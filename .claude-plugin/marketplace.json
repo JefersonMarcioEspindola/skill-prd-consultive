@@ -1,0 +1,18 @@
+{
+  "name": "prd-banca",
+  "owner": { "name": "Jeferson Marcio Espindola", "url": "https://github.com/JefersonMarcioEspindola" },
+  "metadata": {
+    "description": "PRDs consultivos: uma banca de personas questiona a ideia no chat antes de gerar o PRD.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "prd-banca",
+      "source": "./plugins/prd-banca",
+      "description": "Skill que valida a ideia com uma banca (investidora, dev sênior, cliente ideal, moderador, especialista jurídica) e gera PRD.md, PRD.html e PLANO.md.",
+      "version": "0.1.0",
+      "category": "productivity",
+      "keywords": ["prd", "product", "spec", "mvp", "validation", "planning"]
+    }
+  ]
+}

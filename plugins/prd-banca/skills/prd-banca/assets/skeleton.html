@@ -1,0 +1,357 @@
+<!doctype html>
+<!--
+  ESQUELETO DO PRD.html. Não reescrever o CSS do zero: copiar este arquivo e
+  1. Definir o tema no <html data-tema="...">: claro (padrão), escuro ou marca.
+     Para "marca", sobrescrever as variáveis do :root com as cores do perfil.md.
+  2. Preencher <title>, header, hero e as seções com o conteúdo do PRD.md.
+  3. Apagar os blocos de exemplo que não forem usados e todos os comentários.
+  4. Depois de salvar, rodar scripts/embutir_avatares.py para colocar as fotos da banca.
+  Mapa de componentes e regras: references/html.md.
+-->
+<html lang="pt-BR" data-tema="claro">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nome do Produto · PRD</title>
+<style>
+  :root {
+    --ink: #0b0b0b; --muted: #5f5f5f; --line: #e4e4e4; --line-soft: #efefef;
+    --bg: #ffffff; --panel: #f8f8f8; --header-bg: rgba(255,255,255,0.92);
+    --accent: #0b0b0b; --accent-soft: #f3f3f3; --accent-line: #d4d4d4; --accent-fg: #ffffff;
+    --ok: #0a6e4a; --ok-soft: #e8f6ef; --ok-line: #b8e6cf; --ok-fg: #ffffff;
+    --mid: #8a5a00; --mid-soft: #fdf3e2; --mid-line: #f0d49a; --mid-fg: #ffffff;
+    --bad: #b42318; --bad-soft: #fdecea; --bad-line: #f5c2bd; --bad-fg: #ffffff;
+    --shadow: 0 1px 2px rgba(11,15,25,0.05);
+    --display: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", "IBM Plex Mono", Menlo, Consolas, monospace;
+  }
+  html[data-tema="escuro"] {
+    --ink: #f5f5f5; --muted: #9a9a9a; --line: #2a2a2a; --line-soft: #202020;
+    --bg: #0f0f0f; --panel: #181818; --header-bg: rgba(15,15,15,0.9);
+    --accent: #ffffff; --accent-soft: rgba(255,255,255,0.06); --accent-line: rgba(255,255,255,0.25); --accent-fg: #0b0b0b;
+    --ok: #4ade80; --ok-soft: rgba(74,222,128,0.10); --ok-line: rgba(74,222,128,0.35); --ok-fg: #052e16;
+    --mid: #fbbf24; --mid-soft: rgba(251,191,36,0.10); --mid-line: rgba(251,191,36,0.35); --mid-fg: #1a1400;
+    --bad: #f87171; --bad-soft: rgba(248,113,113,0.10); --bad-line: rgba(248,113,113,0.35); --bad-fg: #2a0a0a;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  /* Tema "marca": sobrescrever aqui as variáveis com as cores do perfil.md.
+  html[data-tema="marca"] { --bg: ...; --panel: ...; --ink: ...; --accent: ...; --accent-fg: ...; } */
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans);
+    font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+  code { white-space: nowrap; font-family: var(--mono); font-size: 0.86em; background: var(--panel); border: 1px solid var(--line); padding: 1px 5px; border-radius: 4px; }
+  a { color: var(--accent); }
+
+  .tag {
+    display: inline-block; font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 24px; white-space: nowrap;
+  }
+  .tag-core { background: var(--accent); color: var(--accent-fg); }
+  .tag-ok { background: var(--ok); color: var(--ok-fg); }
+  .tag-watch { background: var(--mid); color: var(--mid-fg); }
+  .tag-line { background: var(--panel); color: var(--ink); border: 1px solid var(--line); }
+
+  header.top {
+    border-bottom: 1px solid var(--line); background: var(--header-bg); backdrop-filter: blur(6px);
+    padding: 14px 24px; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 10;
+  }
+  header.top .mark { font-family: var(--display); font-weight: 800; font-size: 14px; }
+  header.top .sep { width: 1px; height: 14px; background: var(--line); }
+  header.top .sub { font-size: 12.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  header.top .status { margin-left: auto; }
+
+  .wrap { max-width: 800px; margin: 0 auto; padding: 56px 16px 100px; }
+  @media (min-width: 640px) { .wrap { padding-left: 24px; padding-right: 24px; } }
+
+  .hero .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .hero h1 { font-size: clamp(26px, 5vw, 34px); line-height: 1.2; margin-bottom: 18px; }
+  .hero p.lede { font-size: 17px; max-width: 62ch; margin: 0 0 10px; }
+  .hero .meta { font-size: 12.5px; color: var(--muted); margin-top: 20px; }
+  .posicionamento {
+    border-left: 3px solid var(--accent); padding: 4px 0 4px 18px; margin: 0 0 18px;
+    font-size: 18px; line-height: 1.5; font-weight: 500; max-width: 62ch;
+  }
+
+  .toc { border: 1px solid var(--line); border-radius: 8px; padding: 16px 20px; margin: 32px 0 0; background: var(--panel); }
+  .toc h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 10px; }
+  .toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 24px; }
+  @media (max-width: 620px) { .toc ol { columns: 1; } }
+  .toc li { font-size: 13.5px; margin-bottom: 5px; }
+  .toc a { color: var(--ink); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+
+  section { margin-top: 56px; scroll-margin-top: 70px; }
+  .sec-head { margin-bottom: 18px; }
+  .sec-head .tag { margin-bottom: 10px; }
+  .sec-head h2 { font-size: 22px; }
+  .sec-head p.dek { color: var(--muted); font-size: 14.5px; margin: 8px 0 0; max-width: 62ch; }
+
+  p { margin: 0 0 14px; max-width: 70ch; }
+  ul, ol { margin: 0 0 16px; padding-left: 20px; max-width: 66ch; }
+  li { margin-bottom: 7px; }
+  h3.sub-head { font-size: 15px; margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+
+  /* Banca */
+  .banca { display: flex; flex-direction: column; gap: 14px; margin: 18px 0 8px; }
+  .persona {
+    display: grid; grid-template-columns: 76px 1fr; gap: 18px; align-items: start;
+    border: 1px solid var(--line); border-radius: 12px; padding: 18px; background: var(--panel);
+    border-top: 3px solid var(--p, var(--accent));
+  }
+  @media (max-width: 520px) { .persona { grid-template-columns: 1fr; gap: 12px; } }
+  .avatar {
+    width: 76px; height: 76px; border-radius: 14px; overflow: hidden; background: var(--p, var(--accent));
+    display: flex; align-items: center; justify-content: center; color: #fff;
+    font-family: var(--display); font-weight: 800; font-size: 28px; flex-shrink: 0;
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.5); transform-origin: 50% 24%; }
+  .p-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+  .p-head h4 { font-size: 16px; }
+  .p-role { font-size: 12.5px; color: var(--muted); }
+  .persona blockquote { margin: 0 0 12px; font-size: 14.5px; line-height: 1.55; }
+  .persona .row { margin-bottom: 8px; }
+  .persona .row:last-child { margin-bottom: 0; }
+  .persona .row p { font-size: 13.5px; margin: 0; }
+
+  .sinal {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700;
+    padding: 3px 10px; border-radius: 24px; border: 1px solid; font-family: var(--display);
+  }
+  .sinal::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .sinal-verde { color: var(--ok); background: var(--ok-soft); border-color: var(--ok-line); }
+  .sinal-amarelo { color: var(--mid); background: var(--mid-soft); border-color: var(--mid-line); }
+  .sinal-vermelho { color: var(--bad); background: var(--bad-soft); border-color: var(--bad-line); }
+
+  .placar { display: flex; gap: 10px; flex-wrap: wrap; margin: 24px 0 0; }
+  .placar .item { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 30px; padding: 4px 12px 4px 4px; background: var(--panel); font-size: 13px; font-weight: 600; }
+  .placar .avatar { width: 28px; height: 28px; border-radius: 50%; font-size: 12px; }
+  .placar .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .placar .dot.verde { background: var(--ok); } .placar .dot.amarelo { background: var(--mid); } .placar .dot.vermelho { background: var(--bad); }
+
+  /* Escopo dentro / fora */
+  .escopo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0 8px; }
+  @media (max-width: 620px) { .escopo { grid-template-columns: 1fr; } }
+  .escopo .col { border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; background: var(--panel); }
+  .escopo .col.dentro { border-top: 3px solid var(--ok); }
+  .escopo .col.fora { border-top: 3px solid var(--muted); }
+  .escopo h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
+  .escopo ul { margin: 0; padding-left: 18px; font-size: 14px; }
+  .escopo .why { color: var(--muted); font-size: 12.5px; display: block; }
+
+  /* Requisito */
+  .req { border: 1px solid var(--line); border-radius: 8px; padding: 16px 20px; margin: 14px 0; background: var(--panel); }
+  .req-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .req-head h4 { font-size: 15px; }
+  .req p { font-size: 14px; margin-bottom: 10px; }
+  .aceite { list-style: none; padding: 0; margin: 0; counter-reset: ca; }
+  .aceite li { font-size: 13.5px; padding-left: 28px; position: relative; margin-bottom: 6px; counter-increment: ca; }
+  .aceite li::before { content: counter(ca); position: absolute; left: 0; top: 1px; min-width: 18px; height: 18px; border-radius: 4px;
+    background: var(--bg); border: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--muted);
+    display: flex; align-items: center; justify-content: center; }
+
+  /* Decisões */
+  .dec-list { display: flex; flex-direction: column; gap: 10px; margin: 18px 0 8px; }
+  .dec { border-left: 3px solid var(--accent); background: var(--panel); border-radius: 0 8px 8px 0; padding: 12px 16px; }
+  .dec p { margin: 0; font-size: 14px; }
+  .dec .descartado { display: block; font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+
+  /* Componentes herdados */
+  .entity-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line);
+    border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin: 18px 0 8px; }
+  @media (max-width: 620px) { .entity-grid { grid-template-columns: 1fr; } }
+  .entity { background: var(--panel); padding: 16px 18px; }
+  .entity h4 { font-size: 14.5px; margin-bottom: 4px; }
+  .entity p { font-size: 13.5px; color: var(--muted); margin: 0; }
+  .entity code { display: inline-block; margin-bottom: 6px; }
+
+  .flow {
+    border: 1px solid var(--line); border-radius: 10px; padding: 20px; background: var(--panel);
+    margin: 18px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center;
+  }
+  .flow .node { border: 1px solid var(--line); border-radius: 6px; padding: 9px 13px; font-size: 12.5px; background: var(--bg); text-align: center; font-weight: 600; }
+  .flow .node.core { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+  .flow .arrow { color: var(--muted); font-size: 14px; }
+
+  .states { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 12px 0 16px; }
+  .states .st { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); border-radius: 5px; padding: 5px 10px; background: var(--bg); }
+  .states .st.trigger { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 700; }
+  .states .sep { color: var(--muted); font-size: 12px; }
+
+  .mod { border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; margin: 16px 0; background: var(--panel); }
+  .mod .mod-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  .mod h4 { font-size: 16px; }
+  .row { margin-bottom: 12px; }
+  .row:last-child { margin-bottom: 0; }
+  .lbl { font-family: var(--display); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 700; display: block; margin-bottom: 4px; }
+  .mod .row p, .mod .row ul { font-size: 13.5px; margin: 0; }
+  .mod .row ul { padding-left: 18px; }
+
+  .phase-list { display: flex; flex-direction: column; gap: 14px; margin: 18px 0 8px; }
+  .phase { border: 1px solid var(--line); border-radius: 8px; padding: 16px 20px; background: var(--panel); }
+  .phase .ph-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .phase .num {
+    width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--accent-fg);
+    display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 700; flex-shrink: 0; font-family: var(--display);
+  }
+  .phase h4 { font-size: 15px; }
+  .phase p { font-size: 13.5px; color: var(--muted); margin: 0 0 8px; }
+  .phase ul { margin: 0; padding-left: 18px; }
+  .phase li { font-size: 13.5px; margin-bottom: 4px; }
+
+  .tbl-wrap { overflow-x: auto; margin: 18px 0 8px; }
+  table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  table.tbl th, table.tbl td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.tbl th { font-family: var(--display); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); font-weight: 700; }
+
+  .callout { border: 1px solid var(--accent-line); background: var(--accent-soft); border-radius: 8px; padding: 16px 20px; margin: 18px 0; }
+  .callout.warn { border-color: var(--mid-line); background: var(--mid-soft); }
+  .callout .tag { margin-bottom: 8px; }
+  .callout p { font-size: 14.5px; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  footer.doc { margin-top: 72px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+
+  @media print {
+    header.top { position: static; }
+    section, .persona, .req, .mod { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <span class="mark">NOME</span>
+  <span class="sep"></span>
+  <span class="sub">PRD &middot; tipo de documento</span>
+  <span class="tag tag-ok status">Aprovado na banca</span>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="tags">
+      <span class="tag tag-core">PRD</span>
+      <span class="tag tag-line">Modo consultivo</span>
+    </div>
+    <h1>Nome do produto</h1>
+    <p class="posicionamento">Para [público] que [dor], [produto] é [categoria] que [benefício]. Diferente de [alternativa], [diferencial].</p>
+    <p class="lede">Parágrafo de resumo: o que é, para quem, o que resolve.</p>
+
+    <!-- Placar resumido da banca. Mesmo data-persona e data-sinal dos cards da seção Parecer. -->
+    <div class="placar">
+      <span class="item"><span class="avatar" data-persona="helena" data-sinal="verde" style="--p:#1D2B53"><span>H</span></span>Helena<span class="dot verde"></span></span>
+      <span class="item"><span class="avatar" data-persona="caio" data-sinal="amarelo" style="--p:#0A6E4A"><span>C</span></span>Caio<span class="dot amarelo"></span></span>
+      <span class="item"><span class="avatar" data-persona="bia" data-sinal="verde" style="--p:#E07A2E"><span>B</span></span>Bia<span class="dot verde"></span></span>
+    </div>
+
+    <p class="meta">Versão 1.0 &middot; mês de ano &middot; documento vivo</p>
+
+    <nav class="toc">
+      <h4>Neste documento</h4>
+      <!-- start="2" porque a seção 1 (Resumo) é o próprio hero -->
+      <ol start="2">
+        <li><a href="#problema">Problema e contexto</a></li>
+        <!-- uma <li> por seção, na mesma ordem -->
+      </ol>
+    </nav>
+  </div>
+
+  <section id="problema">
+    <div class="sec-head">
+      <span class="tag tag-core">02</span>
+      <h2>Nome da seção</h2>
+      <p class="dek">Uma linha dizendo o que a seção cobre.</p>
+    </div>
+    <p>Texto corrido.</p>
+
+    <!-- Escopo dentro / fora -->
+    <div class="escopo">
+      <div class="col dentro"><h4>Dentro do MVP</h4><ul><li>Item <code>RF-01</code></li></ul></div>
+      <div class="col fora"><h4>Fora, por enquanto</h4><ul><li>Item<span class="why">Motivo curto, quando reavaliar.</span></li></ul></div>
+    </div>
+
+    <!-- Requisito funcional -->
+    <div class="req">
+      <div class="req-head"><code>RF-01</code><h4>Nome do requisito</h4><span class="tag tag-line">essencial</span></div>
+      <p>O sistema deve...</p>
+      <span class="lbl">Critérios de aceite</span>
+      <ol class="aceite"><li>Comportamento verificável.</li><li>Caso de erro.</li></ol>
+    </div>
+
+    <!-- Decisão -->
+    <div class="dec-list">
+      <div class="dec"><p><code>D-01</code> Decisão, porque motivo.<span class="descartado">Descartado: alternativa.</span></p></div>
+    </div>
+
+    <!-- Card de persona (seção Parecer da banca). --p é a cor da persona; as iniciais são o fallback da foto. -->
+    <div class="banca">
+      <article class="persona" style="--p:#1D2B53">
+        <div class="avatar" data-persona="helena" data-sinal="verde"><span>H</span></div>
+        <div>
+          <div class="p-head"><h4>Helena</h4><span class="p-role">Investidora</span><span class="sinal sinal-verde">Seguiria</span></div>
+          <blockquote>Fala final da persona, na voz dela.</blockquote>
+          <div class="row"><span class="lbl">Objeção principal</span><p>Texto.</p></div>
+          <div class="row"><span class="lbl">Como foi tratada</span><p>Texto.</p></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Entidades -->
+    <div class="entity-grid">
+      <div class="entity"><code>E-01 Nome</code><h4>Título curto</h4><p>Campos principais e relações.</p></div>
+    </div>
+
+    <!-- Fluxo -->
+    <div class="flow">
+      <div class="node">Passo 1</div><span class="arrow">&rarr;</span>
+      <div class="node core">Passo central</div><span class="arrow">&rarr;</span>
+      <div class="node">Passo 3</div>
+    </div>
+
+    <!-- Estados -->
+    <div class="states">
+      <span class="st">rascunho</span><span class="sep">&rarr;</span>
+      <span class="st trigger">ativo</span><span class="sep">&rarr;</span>
+      <span class="st">encerrado</span>
+    </div>
+
+    <!-- Módulo / tela -->
+    <div class="mod">
+      <div class="mod-head"><h4>Nome do módulo</h4><span class="tag tag-line">F1</span></div>
+      <div class="row"><span class="lbl">O que faz</span><p>Descrição.</p></div>
+      <div class="row"><span class="lbl">Regras</span><ul><li>Regra.</li></ul></div>
+      <div class="row"><span class="lbl">Por que importa</span><p>Justificativa.</p></div>
+    </div>
+
+    <!-- Fases -->
+    <div class="phase-list">
+      <div class="phase">
+        <div class="ph-head"><span class="num">1</span><h4>Nome da fase</h4></div>
+        <p>O que entrega.</p>
+        <ul><li>RF-01, RF-02</li></ul>
+      </div>
+    </div>
+
+    <!-- Tabela (sempre dentro de .tbl-wrap, para rolar no celular) -->
+    <div class="tbl-wrap"><table class="tbl">
+      <tr><th>Coluna</th><th>Coluna</th></tr>
+      <tr><td>Valor</td><td>Valor</td></tr>
+    </table></div>
+
+    <!-- Callout -->
+    <div class="callout warn">
+      <span class="tag tag-watch">Risco aceito</span>
+      <p>Texto.</p>
+    </div>
+  </section>
+
+  <footer class="doc">
+    Nome do produto &middot; PRD v1.0 &middot; mês de ano. Gerado a partir do PRD.md, que é a fonte da verdade. Documento vivo, sujeito a revisão.
+  </footer>
+</div>
+</body>
+</html>
