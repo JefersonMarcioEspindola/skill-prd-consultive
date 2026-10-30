@@ -1,4 +1,4 @@
-# prd-banca
+# prd-consultivo
 
 **Uma skill do Claude que cria PRDs do jeito consultivo: antes de escrever o documento, uma banca questiona a sua ideia no chat.** Quando não sobra nenhuma dúvida, ela gera o PRD em Markdown (pronto para o Claude Code, Cursor ou outro agente) e em HTML (para ler e compartilhar).
 
@@ -7,12 +7,12 @@
 ## A banca
 
 <p>
-  <img src="plugins/prd-banca/skills/prd-banca/assets/banca/helena-neutro.webp" width="88" alt="Helena">
-  <img src="plugins/prd-banca/skills/prd-banca/assets/banca/caio-neutro.webp" width="88" alt="Caio">
-  <img src="plugins/prd-banca/skills/prd-banca/assets/banca/bia-neutro.webp" width="88" alt="Bia">
-  <img src="plugins/prd-banca/skills/prd-banca/assets/banca/lucas-neutro.webp" width="88" alt="Lucas">
-  <img src="plugins/prd-banca/skills/prd-banca/assets/banca/teo-neutro.webp" width="88" alt="Téo">
-  <img src="plugins/prd-banca/skills/prd-banca/assets/banca/lucia-neutro.webp" width="88" alt="Dra. Lúcia">
+  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/helena-neutro.webp" width="88" alt="Helena">
+  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/caio-neutro.webp" width="88" alt="Caio">
+  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/bia-neutro.webp" width="88" alt="Bia">
+  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/lucas-neutro.webp" width="88" alt="Lucas">
+  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/teo-neutro.webp" width="88" alt="Téo">
+  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/lucia-neutro.webp" width="88" alt="Dra. Lúcia">
 </p>
 
 | Quem | O que quer saber |
@@ -45,21 +45,21 @@ Veja um exemplo em [`docs/exemplo`](docs/exemplo) (ideia fictícia).
 ### Plugin do Claude Code
 
 ```text
-/plugin marketplace add JefersonMarcioEspindola/skill-prd-banca
-/plugin install prd-banca@prd-banca
+/plugin marketplace add JefersonMarcioEspindola/skill-prd-consultivo
+/plugin install prd-consultivo@prd-consultivo
 ```
 
 ### Manual
 
 ```bash
-git clone https://github.com/JefersonMarcioEspindola/skill-prd-banca.git
+git clone https://github.com/JefersonMarcioEspindola/skill-prd-consultivo.git
 mkdir -p ~/.claude/skills
-cp -R skill-prd-banca/plugins/prd-banca/skills/prd-banca ~/.claude/skills/
+cp -R skill-prd-consultivo/plugins/prd-consultivo/skills/prd-consultivo ~/.claude/skills/
 ```
 
 ### claude.ai
 
-Compacte a pasta `plugins/prd-banca/skills/prd-banca` em um `.zip` e envie em Configurações → Capacidades → Skills.
+Compacte a pasta `plugins/prd-consultivo/skills/prd-consultivo` em um `.zip` e envie em Configurações → Capacidades → Skills.
 
 ## Como usar
 
