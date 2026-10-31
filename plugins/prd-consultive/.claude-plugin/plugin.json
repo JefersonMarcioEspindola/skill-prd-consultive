@@ -1,6 +1,6 @@
 {
   "name": "prd-consultive",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Consultative PRDs: a board of personas questions your idea in the chat until no doubt is left, then writes PRD.md for coding agents, PRD.html with the board's verdict and PLAN.md with tasks.",
   "author": {
     "name": "Jeferson Marcio Espindola",

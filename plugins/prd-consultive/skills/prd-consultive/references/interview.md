@@ -18,14 +18,22 @@ If there's a tool for clickable option questions, use the same structure in it.
 
 ---
 
+## Block 0: Who it's for (phase 0, only if the first message doesn't say)
+
+**Who is this for?**
+A) Just me (maybe family or friends)
+B) My team or the company I work at, without selling it
+C) To sell, or to offer to an audience
+D) For me now, maybe I'll sell later *(treated as A)*
+
 ## Block 1: Problem (phase 1)
 
 - What problem does this solve, in one sentence, from the point of view of the person who suffers from it?
 - How often does that person run into it? (every day / every week / now and then)
 - What happens if they don't solve it? (lose money / lose time / get embarrassed / nothing serious)
-- Do you have this problem, or know people who do? Roughly how many?
+- Do you have this problem, or know people who do? Roughly how many? *(skip on a personal product)*
 
-## Block 2: Audience (phase 1)
+## Block 2: Audience (phase 1, skip on a personal product except the usage context)
 
 - Who's the first person who would use it? Be specific (not "small businesses", but "pet shop owners with 1 to 3 employees").
 - Is the person who uses it the same person who pays?
@@ -39,7 +47,7 @@ If there's a tool for clickable option questions, use the same structure in it.
 - What's the one thing the product has to do really well? If only one feature were left, which would it be?
 - Why now? (a law changed / a technology appeared / you got access to this audience / another reason)
 
-## Block 4: Business (phase 2 onward, Helena's area)
+## Block 4: Business (phase 2 onward, Helena's area; only for sale. Internal: just the last question, in hours saved)
 
 - Revenue model: (subscription / usage-based / commission / one-time sale / don't know yet)
 - What price range do you have in mind, and based on what?

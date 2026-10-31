@@ -18,7 +18,7 @@ Write the PRD in the session's language. The headings below are in English; tran
 
 Without these items the PRD comes out vague. In fast mode, this is the list you check gaps against:
 
-1. Main audience, specific
+1. Purpose (personal, internal, for sale) and main audience, specific (personal: the user)
 2. Problem and current alternative
 3. What's in the MVP **and what's out**
 4. Main flow, step by step
@@ -45,7 +45,7 @@ Use these headings, in this order (translated into the session's language). The 
 ```markdown
 # <Product>: PRD
 
-> **Status:** approved by the board on <date> · **Mode:** <fast | consultative> · **Type:** <new product | feature | technical> · **Version:** 1.0
+> **Status:** approved by the board on <date> · **Mode:** <fast | consultative> · **Purpose:** <personal | internal | for sale> · **Type:** <new product | feature | technical> · **Version:** 1.0
 
 ## 1. Summary
 <Positioning statement, in bold.>
@@ -126,6 +126,8 @@ Use these headings, in this order (translated into the session's language). The 
 
 ## Variations by document type
 
+- **Personal product:** section 3 becomes "Who uses it" (one or two lines: the user and their context); metrics in section 4 are usage (frequency, time saved, what it replaces), never revenue; section 13 lists only who sat on the board. Add a line on monthly running cost to the stack section.
+
 - **Feature in an existing product:** section 3 becomes "Who's affected" (can be short); section 9 shows only new or changed entities; add "Impact on what exists" after section 6 (screens, APIs and data that change and how to migrate).
 - **Technical or refactor:** section 2 becomes "Current situation and technical problem"; sections 3 and 6 can go; add "Migration and rollback plan" after section 10; metrics are technical (build time, cost, errors), but at least one has to tie the change to the business.
 - **Fast mode:** section 13 carries the lightning opinion (one line per persona). Say so in the section itself.
@@ -143,5 +145,6 @@ Reread the PRD against this list. If anything fails, fix it before delivering.
 - [ ] The build order doesn't contradict dependencies (you don't build payments before the sign-up they use).
 - [ ] The board verdict is what it actually said, without softening red signals.
 - [ ] No market number without a source or the hypothesis label.
+- [ ] On a personal product: no section, metric or risk about customers, pricing or acquisition.
 - [ ] No code estimate in weeks or months; when there's third-party waiting, it appears separately, with the request starting in Phase 1.
 - [ ] Nothing in the document that isn't in the decision sheet or in `idea.md`.

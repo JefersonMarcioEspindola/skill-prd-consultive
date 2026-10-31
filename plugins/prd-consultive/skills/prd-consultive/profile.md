@@ -15,6 +15,7 @@ You can fill it in any language.
 
 ## Board
 
+- **Usual purpose:** (blank: the skill infers it from the first message, or asks). Options: personal, internal, for sale. Only a default: what you say in the conversation wins.
 - **Ideal customer:** (automatic: Lucas when the audience is predominantly male, Bia otherwise). Options: automatic, Bia, Lucas.
 
 ## Preferred stack

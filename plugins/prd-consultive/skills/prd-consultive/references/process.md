@@ -23,7 +23,8 @@ Everything here is in English for convenience. In the session, use the user's la
 **Goal:** know what's on the table and how deep to go.
 
 1. If the user hasn't told the idea yet, ask for it in one or two sentences. Don't ask for more than that now.
-2. Identify the **document type**, because it changes who sits on the board:
+2. Identify the **purpose** (personal, internal or for sale; rules in SKILL.md, section 3, and `references/board.md`, section "Board by purpose"). It's the first filter on who sits on the board. If it isn't clear from the first message, ask it together with the first questions.
+3. Identify the **document type**, which adjusts the board further:
 
 | Type | Example | Board |
 |---|---|---|
@@ -31,10 +32,10 @@ Everything here is in English for convenience. In the session, use the user's la
 | Feature in an existing product | "add recurring payments to my SaaS" | Helena talks about business impact instead of market; Caio and Bia as usual |
 | Technical or refactor | "migrate the backend from Express to Nest" | Caio leads; Helena talks about cost and risk; Bia only joins if the end user feels the change |
 
-3. Confirm the mode (see SKILL.md) and, if you have file access, create `idea.md`. As soon as you know the audience, choose who plays the ideal customer, Bia or Lucas (rule in `references/board.md`). Wherever this file says "Bia", read "the chosen ideal customer".
-4. Say in one line how it works and that the user controls the pace: "First I understand the idea, then the board challenges it, and I only write the PRD when no doubt is left. If you want to speed up at any point, just say so."
+4. Confirm the mode (see SKILL.md) and, if you have file access, create `idea.md`. If the product is internal or for sale, as soon as you know the audience, choose who plays the ideal customer, Bia or Lucas (rule in `references/board.md`); on a personal product, the user plays that role. Wherever this file says "Bia", read "the chosen ideal customer".
+5. Say in one line how it works and that the user controls the pace: "First I understand the idea, then the board challenges it, and I only write the PRD when no doubt is left. If you want to speed up at any point, just say so."
 
-**Exits when:** type and mode are set.
+**Exits when:** purpose, type and mode are set.
 
 ## Phase 1: Understanding
 
@@ -46,6 +47,8 @@ Build and show the **positioning statement**:
 
 > For **[audience]** who **[pain]**, **[product]** is **[category]** that **[main benefit]**. Unlike **[current alternative]**, **[differentiator]**.
 
+On a personal product, use the short form: "For me, who **[pain]**, **[product]** replaces **[current alternative]** and **[main benefit]**."
+
 Ask the user to confirm or correct it. If they can't fill in a bracket, that's already material for the board, not a reason to stall: mark the bracket as "open for the board".
 
 **Exits when:** the statement is confirmed (even with brackets marked as open).
@@ -55,7 +58,7 @@ Ask the user to confirm or correct it. If they can't fill in a bracket, that's a
 **Goal:** surface the strongest objections early, while changing course is still cheap.
 
 1. Téo opens in one or two lines: who's on the board and how it will work.
-2. Each persona speaks once, in the format from `references/board.md`: signal, short take, main objection and one question. Order: Helena, Caio, Bia and, if there's a trigger, Lúcia.
+2. Each persona speaks once, in the format from `references/board.md`: signal, short take, main objection and one question. Order: Helena, Caio, Bia and, if there's a trigger, Lúcia, skipping whoever doesn't sit for this purpose.
 3. Téo closes with the **objection board** and the consolidated questions: at most 4, prioritized by how much they change the product, each with options when possible.
 
 Objection board (show as a table and update every round):
@@ -93,7 +96,7 @@ Each topic has an owning persona, so the conversation doesn't become an ownerles
 | Main flows | Bia | 2 to 4 flows, step by step, from the user's point of view |
 | Data | Caio | Main entities and how they relate |
 | Stack | Caio | Decisions with the why (see `references/stack.md`) |
-| Success metric | Helena | 1 main metric and 2 or 3 supporting ones, with target and deadline |
+| Success metric | Helena (personal: the user, with Caio) | 1 main metric and 2 or 3 supporting ones, with target and deadline. Personal: usage, not revenue |
 | Regulatory risks | Lúcia, if she's on the board | What's mandatory from day 1 |
 
 Propose instead of asking whenever you can. "From what you said, the MVP has A, B and C, and D waits because X. Right?" is much faster than "what's in the MVP?".
@@ -112,7 +115,7 @@ Propose instead of asking whenever you can. "From what you said, the MVP has A, 
 ## Decision sheet: <product>
 
 **Positioning:** <phase 1 statement, final>
-**Type:** <new product | feature | technical>
+**Purpose:** <personal | internal | for sale> · **Type:** <new product | feature | technical>
 
 **Board verdict:** Helena 🟢 · Caio 🟡 · Bia 🟢 <· Lúcia, if she took part>
 
@@ -124,6 +127,7 @@ Propose instead of asking whenever you can. "From what you said, the MVP has A, 
 **Decisions made:** <D1, D2...>
 **Accepted risks:** <R1, R2...>
 **Assumptions (confirm or correct):** <what was inferred without confirmation>
+<Personal with "maybe I'll sell later": **If you decide to sell:** <the one thing to validate first>>
 
 Can I write the PRD? Do you also want PLAN.md with the tasks?
 ```
@@ -154,7 +158,7 @@ A working file, not a presentation. Update it at the end of each phase. When the
 ```markdown
 # <product>: board log
 
-Mode: <fast | consultative> · Type: <new product | feature | technical> · Current phase: <n> · Language: <language> · Country: <country>
+Mode: <fast | consultative> · Purpose: <personal | internal | for sale> · Type: <new product | feature | technical> · Current phase: <n> · Language: <language> · Country: <country>
 
 ## Positioning
 <statement>
@@ -175,5 +179,5 @@ Mode: <fast | consultative> · Type: <new product | feature | technical> · Curr
 - <what was inferred without confirmation>
 
 ## Signals
-Helena: <signal> · Caio: <signal> · Bia: <signal> · Lúcia: <signal or "didn't take part">
+Helena: <signal or "didn't take part"> · Caio: <signal> · Bia: <signal or "didn't take part"> · Lúcia: <signal or "didn't take part">
 ```

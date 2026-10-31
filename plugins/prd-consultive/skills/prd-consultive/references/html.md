@@ -49,7 +49,7 @@ If some content doesn't fit any component, use running text. Don't invent new co
 
 ## Board cards
 
-One `article.persona` per persona who evaluated the idea, in the order Helena, Caio, ideal customer (Bia or Lucas, whoever took part) and Lúcia. Téo isn't in the verdict because he doesn't evaluate.
+One `article.persona` per persona who evaluated the idea, in the order Helena, Caio, ideal customer (Bia or Lucas, whoever took part) and Lúcia, only those who sat for this purpose (on a personal product, usually just Caio, plus Lúcia if she joined). Téo isn't in the verdict because he doesn't evaluate.
 
 ```html
 <article class="persona" style="--p:#1D2B53">

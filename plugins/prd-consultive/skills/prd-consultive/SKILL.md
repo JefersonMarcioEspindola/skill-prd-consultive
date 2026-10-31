@@ -1,7 +1,7 @@
 ---
 name: prd-consultive
 description: >
-  Writes PRDs the consultative way: before any document, a board of personas (investor, senior dev, ideal customer, moderator and, when the topic calls for it, a legal expert) challenges the idea in the chat until no doubt is left. Then it writes PRD.md (ready for coding agents), PRD.html with the board's verdict and, on request, PLAN.md with tasks. Has a fast mode for ideas already validated. Use it WHENEVER the user wants to create or structure a PRD, spec, product or feature document; validate an app or SaaS idea before building; hear an investor or a developer on an idea; or turn a loose idea into a plan for Claude Code, Codex, Cursor or another agent, even without saying "PRD". Works in any language: use it too for "criar um PRD", "validar minha ideia", "crear un PRD", "validar mi idea".
+  Writes PRDs the consultative way: before any document, a board of personas (investor, senior dev, ideal customer, moderator and, when the topic calls for it, a legal expert) challenges the idea in the chat until no doubt is left. Then it writes PRD.md (ready for coding agents), PRD.html with the board's verdict and, on request, PLAN.md with tasks. Has a fast mode for ideas already validated. Use it WHENEVER the user wants to create or structure a PRD, spec, product or feature document; validate an app or SaaS idea before building; hear an investor or a developer on an idea; plan a personal app or internal tool; or turn a loose idea into a plan for Claude Code, Codex, Cursor or another agent, even without saying "PRD". Works in any language: use it too for "criar um PRD", "validar minha ideia", "crear un PRD", "validar mi idea".
 ---
 
 # PRD Consultive
@@ -46,6 +46,22 @@ If the user already said the mode, follow it. If not, look at what they brought:
 
 The user can switch modes at any time ("speed up", "I want the full board"). Respect it and say in one line what changes.
 
+### Who it's for
+
+Before the board says anything, know who the product is for. It decides who sits on the board and what they're allowed to ask. A board that asks someone building an app for themselves about paying customers and a waitlist is wasting their time.
+
+| Purpose | Example | Board |
+|---|---|---|
+| **Personal** | "an app to track my own workouts", "a tool for me and my family" | Caio and Téo. The user is the customer, so Bia or Lucas don't sit. Helena doesn't sit. Lúcia only if there's a trigger that matters for personal use |
+| **Internal** | "a tool for my team", "a panel for the company I work at", not sold | Helena talks about cost and hours saved, not market. The ideal customer is the colleague who will use it |
+| **For sale** | SaaS, app for an audience, product for clients | Full board |
+
+Infer it from the first message when it's clear ("for me", "pra mim", "uso pessoal", "for my team"). If it isn't, ask in the first round of questions, never assume "for sale". If the user says "for me now, maybe I'll sell later", treat it as **personal** and, in the decision sheet, add a single line on what to validate first if they decide to sell. Personal projects usually fit fast mode; recommend it.
+
+**On a personal project, never ask about** paying customers, waitlist, acquisition, pricing, competitors or what protects the idea from copies. What matters is: does the user actually use it, does it fit their routine, and is the smallest version good enough to start using tomorrow. Details in `references/board.md`, section "Board by purpose".
+
+The user can change the purpose at any time ("actually I want to sell it"); the board changes with it, and Téo says in one line who joins.
+
 ## 4. Rules for both modes
 
 1. **No doubt reaches the document.** Every open point ends in one of three states: *decided*, *scope changed* or *accepted risk* (with the user saying they accept it). The PRD has no "open questions" section. If something depends on someone outside (a partner, a supplier), it becomes an accepted risk with an owner and a deadline, and you can offer a separate document of questions for that person.
@@ -61,7 +77,7 @@ Read `references/process.md` (the phases, with exit criteria) and `references/bo
 
 Phase summary:
 
-0. **Triage:** pitch in one or two sentences, document type (new product, feature, technical), mode.
+0. **Triage:** pitch in one or two sentences, purpose (personal, internal, for sale), document type (new product, feature, technical), mode.
 1. **Understanding:** problem, audience, solution, current alternative, why now. Ends when the positioning statement is confirmed.
 2. **Board, round 1:** Téo opens, each persona gives a signal, main objection and one question. Téo consolidates the questions.
 3. **Rebuttals:** the user answers, personas react only to what changed, the objection board is updated. Up to 3 rounds.
@@ -75,7 +91,7 @@ The goal is to reach the document in 2 to 4 messages without giving up on settli
 
 1. Read what the user brought (text, file, repository).
 2. Compare it with the minimum to generate (list in `references/prd-template.md`, section "Minimum to generate"). In a single message, show:
-   - **Lightning opinion:** one line per persona (Helena, Caio, the ideal customer, Bia or Lucas, and Lúcia if there's a trigger), with signal and the most important point. It's a warning, not an interrogation. If a red shows up, say so clearly and offer to switch to consultative.
+   - **Lightning opinion:** one line per persona on the board for this purpose (for sale: Helena, Caio, the ideal customer, Bia or Lucas, and Lúcia if there's a trigger; personal: Caio, and Lúcia if there's a trigger), with signal and the most important point. It's a warning, not an interrogation. If a red shows up, say so clearly and offer to switch to consultative.
    - **Gaps:** a single round, only with what **blocks the build**. Whatever can be decided with a sensible default, decide and record as an assumption.
 3. Decision sheet (format in `references/process.md`, phase 5) and gate. If the material is complete with no gaps, the sheet goes in the same message as the opinion.
 4. Generation.
