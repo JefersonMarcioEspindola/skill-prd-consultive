@@ -1,57 +1,57 @@
 # Stack
 
-Quem conduz é o Caio. O objetivo é sair com decisões justificadas, não com uma lista de tecnologias da moda. Stack boa é a que quem vai construir consegue entregar e manter.
+Caio leads. The goal is to come out with justified decisions, not a list of trendy technologies. A good stack is one the builder can ship and maintain.
 
-## 1. Descobrir antes de perguntar
+## 1. Discover before asking
 
-Se houver acesso a um repositório ou pasta de projeto, olhe antes de fazer qualquer pergunta de stack:
+If you have access to a repository or project folder, look before asking any stack question:
 
-| Arquivo | O que revela |
+| File | What it reveals |
 |---|---|
-| `package.json` | Framework (next, react, vue, express, nest), ORM (prisma, drizzle), auth, testes |
+| `package.json` | Framework (next, react, vue, express, nest), ORM (prisma, drizzle), auth, tests |
 | `requirements.txt`, `pyproject.toml` | Python: django, fastapi, flask |
 | `composer.json`, `Gemfile`, `go.mod`, `Cargo.toml` | PHP, Ruby, Go, Rust |
 | `app.json`, `eas.json`, `pubspec.yaml` | Mobile: Expo/React Native, Flutter |
-| `docker-compose.yml`, `.env.example` | Banco, filas, serviços externos |
-| `vercel.json`, `netlify.toml`, `fly.toml`, `Dockerfile` | Hospedagem |
-| `CLAUDE.md`, `AGENTS.md`, `README.md` | Convenções e decisões já tomadas |
+| `docker-compose.yml`, `.env.example` | Database, queues, external services |
+| `vercel.json`, `netlify.toml`, `fly.toml`, `Dockerfile` | Hosting |
+| `CLAUDE.md`, `AGENTS.md`, `README.md` | Conventions and decisions already made |
 
-Mostre o que encontrou em uma linha ("Vi que o projeto já usa Next 15 com Prisma e Postgres") e pergunte só o que falta.
+Show what you found in one line ("I see the project already uses Next 15 with Prisma and Postgres") and ask only what's missing.
 
-Depois, olhe o `perfil.md`. Se tiver stack preferida, ela é a recomendação padrão.
+Then look at the profile. If it has a preferred stack, that's the default recommendation.
 
-## 2. Perguntar só o que muda a escolha
+## 2. Ask only what changes the choice
 
-Se nem o repositório nem o perfil respondem, pergunte em uma rodada:
+If neither the repository nor the profile answers, ask in one round:
 
-1. **Tipo de aplicação:** web / mobile / web e mobile / só API / automação ou bot
-2. **Quem constrói e com que experiência:** (isso pesa mais que qualquer outro fator)
-3. **Restrições:** algo já decidido, orçamento de hospedagem, exigência de cliente
+1. **Type of application:** web / mobile / web and mobile / API only / automation or bot
+2. **Who builds it and with what experience:** (this weighs more than any other factor)
+3. **Constraints:** anything already decided, hosting budget, client requirements
 
-## 3. Recomendar com motivo
+## 3. Recommend with a reason
 
-Recomende uma stack completa, com o porquê de cada escolha ligado à ideia, e deixe o usuário trocar qualquer peça. Pontos de partida quando não há preferência:
+Recommend a complete stack, with the why of each choice tied to the idea, and let the user swap any piece. Starting points when there's no preference:
 
-| Tipo | Recomendação inicial | Por quê |
+| Type | Initial recommendation | Why |
 |---|---|---|
-| SaaS web | Next.js + TypeScript, Postgres (Neon ou Supabase), Drizzle ou Prisma, auth gerenciada, deploy na Vercel | Um repositório só, muita documentação, agentes de IA conhecem bem |
-| Mobile | Expo (React Native) + TypeScript, backend como serviço ou API Node | Um código para iOS e Android, publicação simples |
-| API ou backend isolado | Node.js + TypeScript (Fastify ou Nest) ou Python (FastAPI), Postgres | Escolha pela linguagem que o time já domina |
-| Automação ou bot | Script em Node ou Python, agendado, ou ferramenta no-code se ninguém programa | Menor coisa que funciona |
-| Site de conteúdo | Next.js ou Astro, CMS se não-dev edita | Desempenho e SEO sem servidor |
+| Web SaaS | Next.js + TypeScript, Postgres (Neon or Supabase), Drizzle or Prisma, managed auth, deploy on Vercel | One repository, lots of documentation, AI agents know it well |
+| Mobile | Expo (React Native) + TypeScript, backend as a service or a Node API | One codebase for iOS and Android, simple publishing |
+| Standalone API or backend | Node.js + TypeScript (Fastify or Nest) or Python (FastAPI), Postgres | Pick the language the team already knows |
+| Automation or bot | A scheduled Node or Python script, or a no-code tool if nobody codes | The smallest thing that works |
+| Content site | Next.js or Astro, a CMS if non-developers edit | Performance and SEO without a server |
 
-Decisões que quase sempre aparecem e precisam de resposta explícita:
+Decisions that almost always come up and need an explicit answer:
 
-- **Auth:** gerenciada (Clerk, Auth.js, Supabase Auth) ou própria? Gerenciada, salvo motivo forte.
-- **Pagamentos:** Stripe, Mercado Pago ou Asaas (Pix e boleto no Brasil). Nunca guardar dados de cartão.
-- **Arquivos:** storage de objetos (S3, R2, Supabase Storage), nunca no banco.
-- **E-mail transacional e notificações:** qual serviço, se o MVP precisa.
-- **IA:** qual modelo, onde roda a chamada (sempre no servidor) e qual o custo estimado por uso.
+- **Auth:** managed (Clerk, Auth.js, Supabase Auth) or custom? Managed, unless there's a strong reason.
+- **Payments:** a provider that works in the user's country (Stripe almost everywhere; in Brazil also Mercado Pago or Asaas for Pix and boleto). Never store card data.
+- **Files:** object storage (S3, R2, Supabase Storage), never in the database.
+- **Transactional email and notifications:** which service, if the MVP needs it.
+- **AI:** which model, where the call runs (always on the server) and the estimated cost per use.
 
-## 4. Registrar como decisão
+## 4. Record as a decision
 
-Cada escolha entra no `ideia.md` e depois no PRD como decisão, no formato:
+Each choice goes into `idea.md` and then into the PRD as a decision, in this format:
 
-> D3: Postgres no Neon, porque o perfil prefere Postgres e o plano gratuito cobre o MVP. Descartado: Firebase (modelo de dados relacional pesa a favor de SQL).
+> D3: Postgres on Neon, because the profile prefers Postgres and the free tier covers the MVP. Rejected: Firebase (the relational data model favors SQL).
 
-Se o usuário não sabe e não quer decidir, use a recomendação e registre como suposição para ele confirmar na ficha de decisão.
+If the user doesn't know and doesn't want to decide, use the recommendation and record it as an assumption for them to confirm in the decision sheet.

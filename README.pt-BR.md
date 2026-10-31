@@ -17,7 +17,7 @@
   <img alt="ChatGPT" src="https://img.shields.io/badge/ChatGPT-suportado-1D4ED8">
   <img alt="Gemini" src="https://img.shields.io/badge/Gemini-suportado-1D4ED8">
   <img alt="Agentes de código" src="https://img.shields.io/badge/Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor-suportado-1D4ED8">
-  <img alt="Saída" src="https://img.shields.io/badge/sa%C3%ADda-PRD.md%20%C2%B7%20PRD.html%20%C2%B7%20PLANO.md-0B2A6F">
+  <img alt="Saída" src="https://img.shields.io/badge/sa%C3%ADda-PRD.md%20%C2%B7%20PRD.html%20%C2%B7%20PLAN.md-0B2A6F">
   <img alt="Licença MIT" src="https://img.shields.io/badge/licen%C3%A7a-MIT-0B2A6F">
 </p>
 
@@ -67,7 +67,7 @@ flowchart LR
   E --> F[Ficha de decisão<br/>você aprova]
   F --> G[PRD.md]
   G --> H[PRD.html]
-  G --> I[PLANO.md<br/>opcional]
+  G --> I[PLAN.md<br/>opcional]
 ```
 
 Nenhum arquivo é escrito antes de você aprovar a **ficha de decisão**: posicionamento, o que entra e o que fica fora
@@ -77,12 +77,12 @@ confirmar ou corrigir.
 ## A banca
 
 <p>
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/helena-neutro.webp" width="88" alt="Helena">
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/caio-neutro.webp" width="88" alt="Caio">
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/bia-neutro.webp" width="88" alt="Bia">
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/lucas-neutro.webp" width="88" alt="Lucas">
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/teo-neutro.webp" width="88" alt="Téo">
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/lucia-neutro.webp" width="88" alt="Dra. Lúcia">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/helena-neutral.webp" width="88" alt="Helena">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/caio-neutral.webp" width="88" alt="Caio">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/bia-neutral.webp" width="88" alt="Bia">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/lucas-neutral.webp" width="88" alt="Lucas">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/teo-neutral.webp" width="88" alt="Téo">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/lucia-neutral.webp" width="88" alt="Dra. Lúcia">
 </p>
 
 | Quem | O que quer saber |
@@ -115,9 +115,9 @@ preço"*.
 
 | Arquivo | Para quê | O que tem dentro |
 |---|---|---|
-| `PRD.md` | O seu agente de código | IDs estáveis (RF-01, D-01, R-01), critérios de aceite verificáveis, decisões com o porquê e a alternativa descartada, uma lista explícita do que fica **fora** |
+| `PRD.md` | O seu agente de código | IDs estáveis (FR-01, D-01, R-01), critérios de aceite verificáveis, decisões com o porquê e a alternativa descartada, uma lista explícita do que fica **fora** |
 | `PRD.html` | Ler e compartilhar | O mesmo conteúdo em um documento limpo e autocontido, com o parecer da banca e as fotos |
-| `PLANO.md` | Construir | Fases em ordem de dependência, tarefas pequenas com "pronto quando" e um prompt de handoff para colar no agente |
+| `PLAN.md` | Construir | Fases em ordem de dependência, tarefas pequenas com "pronto quando" e um prompt de handoff para colar no agente |
 
 Os prazos são realistas para quem constrói com IA: código leva horas ou dias, nunca semanas. O que costuma definir a
 data de lançamento é a espera por terceiros (aprovação no provedor de pagamento, liberação de API oficial, revisão da
@@ -185,7 +185,7 @@ Para quem: <o mais específico que conseguir, ou "ainda não sei">
 Modo: <consultivo / rápido / você escolhe>
 Stack: <sua preferência, "usa o que está neste repositório" ou "me recomenda">
 
-No final quero também o PLANO.md com as tarefas.
+No final quero também o PLAN.md com as tarefas.
 ```
 
 Ou fale do seu jeito. Isso também funciona:
@@ -204,9 +204,9 @@ Ou fale do seu jeito. Isso também funciona:
 | 3. Réplicas | Só reage quem tem algo novo; o sinal muda com argumento | Toda objeção decidida, cortada ou aceita como risco |
 | 4. Convergência | Cada assunto tem dono: escopo (Caio), fluxos (Bia), métrica (Helena), jurídico (Lúcia) | MVP dentro e fora, fluxos, dados, stack, métrica de sucesso |
 | 5. Veredito e portão | Sinais finais e a ficha de decisão | O seu sim explícito antes de qualquer arquivo |
-| 6. Geração | `PRD.md`, depois `PRD.html`, depois `PLANO.md` se você pediu | Arquivos salvos e o próximo passo concreto |
+| 6. Geração | `PRD.md`, depois `PRD.html`, depois `PLAN.md` se você pediu | Arquivos salvos e o próximo passo concreto |
 
-No modo consultivo a skill mantém um `ideia.md` na pasta de saída, para nenhuma decisão se perder se a conversa ficar
+No modo consultivo a skill mantém um `idea.md` na pasta de saída, para nenhuma decisão se perder se a conversa ficar
 longa ou o contexto for resumido.
 
 ## Seu perfil
@@ -215,13 +215,13 @@ Preencha o perfil uma vez e a skill para de perguntar o que já sabe: idioma, pa
 (claro, escuro ou as cores da sua marca), tom de escrita e pasta de saída.
 
 Num app de chat (Claude, ChatGPT, Gemini), diga as suas preferências uma vez e salve na memória ou nas instruções
-personalizadas do app, ou edite o `perfil.md` dentro do zip antes de enviar.
+personalizadas do app, ou edite o `profile.md` dentro do zip antes de enviar.
 
 No Claude Code, se instalou do jeito manual:
 
 ```bash
 mkdir -p ~/.claude/prd-consultive
-cp ~/.claude/skills/prd-consultive/perfil.md ~/.claude/prd-consultive/perfil.md
+cp ~/.claude/skills/prd-consultive/profile.md ~/.claude/prd-consultive/profile.md
 ```
 
 Edite a cópia em `~/.claude/prd-consultive/`. Esse lugar sobrevive às atualizações do plugin; a skill procura lá
@@ -230,14 +230,15 @@ do prd-consultive"* que ele cria a cópia para você.
 
 ## Idioma e país
 
-A banca fala o **seu** idioma: responde no idioma em que você escreve (ou no que estiver no perfil) e escreve os
-documentos nele. As referências locais se adaptam ao seu país: GDPR ou CCPA em vez de LGPD, os meios de pagamento e a
+A skill é escrita em inglês, mas a sessão segue **você**: o idioma da sua primeira mensagem define o idioma da
+conversa inteira e de todos os documentos (PRD, HTML, plano). Comece em português e tudo sai em português. Um idioma
+definido no perfil tem prioridade. As referências locais se adaptam ao seu país: GDPR ou CCPA em vez de LGPD, os meios de pagamento e a
 moeda de lá. As personas mantêm os nomes.
 
 ## Exemplo
 
 Um PRD completo do **TreinoCerto**, um app fictício para personal trainers, gerado no modo consultivo:
-[`docs/exemplo/PRD.md`](docs/exemplo/PRD.md) e [`docs/exemplo/PRD.html`](docs/exemplo/PRD.html) (baixe e abra no
+[`docs/example/PRD.md`](docs/example/PRD.md) e [`docs/example/PRD.html`](docs/example/PRD.html) (baixe e abra no
 navegador).
 
 <p align="center">
@@ -247,9 +248,9 @@ navegador).
 
 ## Monte a sua banca
 
-As fotos ficam em `plugins/prd-consultive/skills/prd-consultive/assets/banca/`, uma por persona e sinal
-(`helena-neutro.webp`, `helena-verde.webp`, `helena-amarelo.webp`, `helena-vermelho.webp`...). Troque pelas suas,
-mantendo os nomes. O [`LEIA-ME.md`](plugins/prd-consultive/skills/prd-consultive/assets/banca/LEIA-ME.md) dessa pasta
+As fotos ficam em `plugins/prd-consultive/skills/prd-consultive/assets/board/`, uma por persona e sinal
+(`helena-neutral.webp`, `helena-green.webp`, `helena-yellow.webp`, `helena-red.webp`...). Troque pelas suas,
+mantendo os nomes. O [`README.md`](plugins/prd-consultive/skills/prd-consultive/assets/board/README.md) dessa pasta
 tem os tamanhos, as cores de fundo e uma dica para gerar um conjunto com o mesmo estilo. Sem fotos, os cards mostram
 as iniciais coloridas.
 

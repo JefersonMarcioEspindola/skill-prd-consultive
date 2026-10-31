@@ -17,7 +17,7 @@
   <img alt="ChatGPT" src="https://img.shields.io/badge/ChatGPT-supported-1D4ED8">
   <img alt="Gemini" src="https://img.shields.io/badge/Gemini-supported-1D4ED8">
   <img alt="Coding agents" src="https://img.shields.io/badge/Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor-supported-1D4ED8">
-  <img alt="Output" src="https://img.shields.io/badge/output-PRD.md%20%C2%B7%20PRD.html%20%C2%B7%20PLANO.md-0B2A6F">
+  <img alt="Output" src="https://img.shields.io/badge/output-PRD.md%20%C2%B7%20PRD.html%20%C2%B7%20PLAN.md-0B2A6F">
   <img alt="License MIT" src="https://img.shields.io/badge/license-MIT-0B2A6F">
 </p>
 
@@ -67,7 +67,7 @@ flowchart LR
   E --> F[Decision sheet<br/>you approve]
   F --> G[PRD.md]
   G --> H[PRD.html]
-  G --> I[PLANO.md<br/>optional]
+  G --> I[PLAN.md<br/>optional]
 ```
 
 Nothing is written to a file until you approve the **decision sheet**: positioning, what's in and out of the MVP,
@@ -77,12 +77,12 @@ them.
 ## The board
 
 <p>
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/helena-neutro.webp" width="88" alt="Helena">
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/caio-neutro.webp" width="88" alt="Caio">
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/bia-neutro.webp" width="88" alt="Bia">
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/lucas-neutro.webp" width="88" alt="Lucas">
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/teo-neutro.webp" width="88" alt="Téo">
-  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/lucia-neutro.webp" width="88" alt="Dra. Lúcia">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/helena-neutral.webp" width="88" alt="Helena">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/caio-neutral.webp" width="88" alt="Caio">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/bia-neutral.webp" width="88" alt="Bia">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/lucas-neutral.webp" width="88" alt="Lucas">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/teo-neutral.webp" width="88" alt="Téo">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/board/lucia-neutral.webp" width="88" alt="Dr. Lúcia">
 </p>
 
 | Who | What they want to know |
@@ -91,7 +91,7 @@ them.
 | **Caio**, senior dev | The riskiest part, what to cut from the MVP, what depends on third parties |
 | **Bia** or **Lucas**, ideal customer | Would I use it? Why would I switch from what I do today? |
 | **Téo**, moderator | Runs the session, keeps the objection board, turns debates into decisions |
-| **Dra. Lúcia**, legal expert | Joins when the idea touches sensitive data, money, regulated sectors or AI decisions |
+| **Dr. Lúcia**, legal expert | Joins when the idea touches sensitive data, money, regulated sectors or AI decisions |
 
 Every persona gives a signal (🟢 would go, 🟡 with conditions, 🔴 not yet), their strongest objection and one
 question. Each one has a history, a way of talking and blind spots that the others balance out, so they disagree
@@ -115,9 +115,9 @@ pricing"*.
 
 | File | For | What's inside |
 |---|---|---|
-| `PRD.md` | Your coding agent | Stable IDs (RF-01, D-01, R-01), testable acceptance criteria, decisions with the why and the rejected alternative, an explicit **out of scope** list |
+| `PRD.md` | Your coding agent | Stable IDs (FR-01, D-01, R-01), testable acceptance criteria, decisions with the why and the rejected alternative, an explicit **out of scope** list |
 | `PRD.html` | Reading and sharing | The same content as a clean, self-contained document, with the board's verdict and photos |
-| `PLANO.md` | Building | Phases in dependency order, small tasks with "done when" checklists and a handoff prompt to paste into the agent |
+| `PLAN.md` | Building | Phases in dependency order, small tasks with "done when" checklists and a handoff prompt to paste into the agent |
 
 Timelines are realistic for building with AI: code takes hours or days, never weeks. What usually sets the launch date
 is waiting on third parties (payment provider approval, official API access, app store review), so those requests
@@ -184,7 +184,7 @@ Who it's for: <as specific as you can, or "not sure yet">
 Mode: <consultative / fast / you choose>
 Stack: <your preference, "use what's in this repo", or "recommend one">
 
-I also want the PLANO.md with tasks at the end.
+I also want the PLAN.md with tasks at the end.
 ```
 
 Or just talk naturally. These work too:
@@ -203,9 +203,9 @@ Or just talk naturally. These work too:
 | 3. Rebuttals | Only who has something new reacts; signals change with arguments | Every objection decided, cut or accepted as a risk |
 | 4. Convergence | Each topic has an owner: scope (Caio), flows (Bia), metric (Helena), legal (Lúcia) | MVP in and out, flows, data, stack, success metric |
 | 5. Verdict and gate | Final signals and the decision sheet | Your explicit yes before anything is written |
-| 6. Generation | `PRD.md`, then `PRD.html`, then `PLANO.md` if you asked | Files saved, plus the next concrete step |
+| 6. Generation | `PRD.md`, then `PRD.html`, then `PLAN.md` if you asked | Files saved, plus the next concrete step |
 
-In consultative mode the skill keeps an `ideia.md` log in the output folder, so no decision gets lost if the
+In consultative mode the skill keeps an `idea.md` log in the output folder, so no decision gets lost if the
 conversation is long or the context is summarized.
 
 ## Your profile
@@ -214,13 +214,13 @@ Fill in a profile once and the skill stops asking what it already knows: languag
 theme (light, dark or your brand colors), writing tone and output folder.
 
 In a chat app (Claude, ChatGPT, Gemini), just tell it your preferences once and save them in the app's memory or
-custom instructions, or edit `perfil.md` inside the zip before uploading it.
+custom instructions, or edit `profile.md` inside the zip before uploading it.
 
 In Claude Code, if you installed manually:
 
 ```bash
 mkdir -p ~/.claude/prd-consultive
-cp ~/.claude/skills/prd-consultive/perfil.md ~/.claude/prd-consultive/perfil.md
+cp ~/.claude/skills/prd-consultive/profile.md ~/.claude/prd-consultive/profile.md
 ```
 
 Edit the copy in `~/.claude/prd-consultive/`. That location survives plugin updates; the skill looks there first and
@@ -229,15 +229,17 @@ profile"* and it will create the copy for you.
 
 ## Language and country
 
-The skill's instructions are written in Brazilian Portuguese, but the board speaks **your** language: it answers in
-the language you write in (or the one set in your profile) and writes the documents in it too. Local references
-adapt to your country: GDPR or CCPA instead of LGPD, your payment methods, your currency. The personas keep their
-names.
+The skill is written in English, but the session follows **you**: the language of your first message sets the
+language of the whole conversation and of every document (PRD, HTML, plan). Start in Portuguese and you get
+everything in Portuguese; start in Spanish, everything in Spanish. A language set in your profile overrides this.
+
+Local references adapt to your country too: GDPR, CCPA or LGPD, your payment methods, your currency. The personas
+keep their names.
 
 ## Example
 
 A full PRD for **TreinoCerto**, a fictional app for personal trainers, generated in consultative mode (in
-Portuguese): [`docs/exemplo/PRD.md`](docs/exemplo/PRD.md) and [`docs/exemplo/PRD.html`](docs/exemplo/PRD.html)
+Portuguese): [`docs/example/PRD.md`](docs/example/PRD.md) and [`docs/example/PRD.html`](docs/example/PRD.html)
 (download it and open it in a browser).
 
 <p align="center">
@@ -247,9 +249,9 @@ Portuguese): [`docs/exemplo/PRD.md`](docs/exemplo/PRD.md) and [`docs/exemplo/PRD
 
 ## Make your own board
 
-The photos live in `plugins/prd-consultive/skills/prd-consultive/assets/banca/`, one per persona and signal
-(`helena-neutro.webp`, `helena-verde.webp`, `helena-amarelo.webp`, `helena-vermelho.webp`...). Replace them with your
-own, keeping the file names. The [`LEIA-ME.md`](plugins/prd-consultive/skills/prd-consultive/assets/banca/LEIA-ME.md)
+The photos live in `plugins/prd-consultive/skills/prd-consultive/assets/board/`, one per persona and signal
+(`helena-neutral.webp`, `helena-green.webp`, `helena-yellow.webp`, `helena-red.webp`...). Replace them with your
+own, keeping the file names. The [`README.md`](plugins/prd-consultive/skills/prd-consultive/assets/board/README.md)
 in that folder has the sizes, background colors and a tip for generating a consistent set. Without photos the cards
 fall back to colored initials.
 

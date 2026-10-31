@@ -1,144 +1,147 @@
-# Template do PRD.md
+# PRD.md template
 
-O `PRD.md` é a fonte da verdade e é escrito para dois leitores: uma pessoa que vai decidir e um agente de código que vai construir. Para o agente, o que importa é não haver ambiguidade: IDs estáveis, requisitos testáveis, decisões com o porquê e limites claros do que **não** fazer.
+`PRD.md` is the source of truth and is written for two readers: a person who will decide and a coding agent who will build. For the agent, what matters is no ambiguity: stable IDs, testable requirements, decisions with the why and clear limits on what **not** to do.
 
-## Conteúdo
+Write the PRD in the session's language. The headings below are in English; translate them (in Portuguese, for example: Resumo, Problema e contexto, Público, Objetivos e métricas, Escopo do MVP...). Keep the IDs as they are (FR-01, NFR-01, D-01, R-01, E-01) in any language, so the PLAN and the agent can reference them.
 
-- Mínimo para gerar
-- Princípios de escrita
-- Estrutura
-- Variações por tipo de documento
-- Checklist antes de salvar
+## Contents
+
+- Minimum to generate
+- Writing principles
+- Structure
+- Variations by document type
+- Checklist before saving
 
 ---
 
-## Mínimo para gerar
+## Minimum to generate
 
-Sem estes itens o PRD sai vago. No modo rápido, é com esta lista que você confere as lacunas:
+Without these items the PRD comes out vague. In fast mode, this is the list you check gaps against:
 
-1. Público principal, específico
-2. Problema e alternativa atual
-3. O que entra no MVP **e o que fica fora**
-4. Fluxo principal, passo a passo
-5. Entidades de dados principais
-6. Stack (ou recomendação aceita)
-7. Métrica principal de sucesso
+1. Main audience, specific
+2. Problem and current alternative
+3. What's in the MVP **and what's out**
+4. Main flow, step by step
+5. Main data entities
+6. Stack (or an accepted recommendation)
+7. Main success metric
 
-## Princípios de escrita
+## Writing principles
 
-- **Seção que não muda o build ou uma decisão de produto não entra.** Melhor um PRD de 4 páginas preciso do que um de 15 genérico.
-- **Requisitos usam "deve"** e têm critério de aceite verificável. "Deve ser rápido" não é critério; "a lista de alunos carrega em menos de 1 s com 500 registros" é.
-- **IDs estáveis** (RF-01, RNF-01, D-01, R-01, E-01) para o PLANO.md e o agente poderem referenciar.
-- **Critérios de aceite em lista numerada, nunca checkbox.** O PRD é especificação, não lista de tarefas: quem lê é um agente, e ele precisa citar o critério ("RF-03, critério 2"), não marcar. Checkbox só existe no PLANO.md, onde o agente marca o que concluiu.
-- **Cada decisão traz o porquê e a alternativa descartada.** É isso que impede o agente (ou você daqui a três meses) de "melhorar" algo que foi decidido de propósito.
-- **Prazo realista para quem constrói com IA.** A ordem de construção é em fases, não em semanas. Se o documento falar em tempo, separe o tempo de construir (horas ou dias com agente) do tempo de esperar terceiros (aprovações, revisões, liberações), que é o que costuma definir a data.
-- **Fora de escopo é tão importante quanto o escopo.** Agentes adoram adicionar coisas; a lista de "fora" é o freio.
-- **Sem perguntas em aberto.** Tudo o que ficou pendente aparece como risco aceito, com dono e gatilho de revisão.
-- Siga o tom e as regras de escrita do perfil.
+- **A section that doesn't change the build or a product decision doesn't go in.** A precise 4-page PRD beats a generic 15-page one.
+- **Requirements use "must"** and have a verifiable acceptance criterion. "Must be fast" isn't a criterion; "the client list loads in under 1 s with 500 records" is.
+- **Stable IDs** (FR-01, NFR-01, D-01, R-01, E-01) so PLAN.md and the agent can reference them. FR = functional requirement, NFR = non-functional requirement, D = decision, R = accepted risk, E = entity.
+- **Acceptance criteria as a numbered list, never checkboxes.** The PRD is a specification, not a task list: the reader is an agent, and it needs to cite the criterion ("FR-03, criterion 2"), not tick it. Checkboxes only exist in PLAN.md, where the agent marks what it finished.
+- **Every decision has the why and the rejected alternative.** That's what stops the agent (or you, three months from now) from "improving" something that was decided on purpose.
+- **Realistic timelines for people who build with AI.** Build order is in phases, not weeks. If the document mentions time, separate build time (hours or days with an agent) from waiting on third parties (approvals, reviews, activations), which is usually what sets the date.
+- **Out of scope is as important as scope.** Agents love adding things; the "out" list is the brake.
+- **No open questions.** Anything left pending appears as an accepted risk, with an owner and a review trigger.
+- Follow the tone and writing rules in the profile.
 
-## Estrutura
+## Structure
 
-Use estes títulos, nesta ordem. Os números ajudam a referenciar ("ver seção 7").
+Use these headings, in this order (translated into the session's language). The numbers help with references ("see section 7").
 
 ```markdown
-# <Produto>: PRD
+# <Product>: PRD
 
-> **Status:** aprovado na banca em <data> · **Modo:** <rápido | consultivo> · **Tipo:** <produto novo | feature | técnico> · **Versão:** 1.0
+> **Status:** approved by the board on <date> · **Mode:** <fast | consultative> · **Type:** <new product | feature | technical> · **Version:** 1.0
 
-## 1. Resumo
-<Frase de posicionamento, em negrito.>
-<Um parágrafo: o que é, para quem, o que resolve e o que torna diferente.>
+## 1. Summary
+<Positioning statement, in bold.>
+<One paragraph: what it is, for whom, what it solves and what makes it different.>
 
-## 2. Problema e contexto
-- **Dor:** <a dor, do ponto de vista de quem sofre>
-- **Como resolvem hoje:** <alternativa atual e o que tem de ruim>
-- **Por que agora:** <o que mudou>
+## 2. Problem and context
+- **Pain:** <the pain, from the point of view of the person who suffers from it>
+- **How it's solved today:** <current alternative and what's bad about it>
+- **Why now:** <what changed>
 
-## 3. Público
-<Usuário principal, com contexto de uso (dispositivo, momento, familiaridade com tecnologia). Se quem paga for diferente de quem usa, diga.>
-<Outros perfis de usuário (admin etc.) em lista curta.>
+## 3. Audience
+<Main user, with usage context (device, moment, comfort with technology). If the payer differs from the user, say so.>
+<Other user profiles (admin etc.) in a short list.>
 
-## 4. Objetivos e métricas
-| Métrica | Meta | Prazo | Como medir |
+## 4. Goals and metrics
+| Metric | Target | Deadline | How to measure |
 |---|---|---|---|
-| <principal> | | | |
+| <main> | | | |
 
-**Não-objetivos:** <o que o produto deliberadamente não tenta ser ou resolver>
+**Non-goals:** <what the product deliberately doesn't try to be or solve>
 
-## 5. Escopo do MVP
-**Dentro:**
-- <item> (RF-xx)
+## 5. MVP scope
+**In:**
+- <item> (FR-xx)
 
-**Fora (e por quê):**
-- <item>: <motivo curto; quando reavaliar>
+**Out (and why):**
+- <item>: <short reason; when to revisit>
 
-## 6. Fluxos principais
-### F1. <nome do fluxo>
-1. <passo, do ponto de vista do usuário>
+## 6. Main flows
+### F1. <flow name>
+1. <step, from the user's point of view>
 2. ...
-**Resultado:** <estado final>
+**Result:** <end state>
 
-## 7. Requisitos funcionais
-### RF-01. <nome curto>
-<O sistema deve...>
-**Critérios de aceite:**
-1. <comportamento verificável>
-2. <caso de erro ou borda>
-**Prioridade:** <essencial | importante> · **Fluxo:** F1
+## 7. Functional requirements
+### FR-01. <short name>
+<The system must...>
+**Acceptance criteria:**
+1. <verifiable behavior>
+2. <error or edge case>
+**Priority:** <essential | important> · **Flow:** F1
 
-## 8. Requisitos não funcionais
-- **RNF-01 Segurança:** <...>
-- **RNF-02 Privacidade (LGPD ou a lei do país):** <...>
-- **RNF-03 Desempenho:** <...>
-- **RNF-04 Acessibilidade:** <...>
-<Só os que se aplicam, cada um verificável.>
+## 8. Non-functional requirements
+- **NFR-01 Security:** <...>
+- **NFR-02 Privacy (LGPD, GDPR or the local law):** <...>
+- **NFR-03 Performance:** <...>
+- **NFR-04 Accessibility:** <...>
+<Only the ones that apply, each verifiable.>
 
-## 9. Modelo de dados
-| Entidade | Campos principais | Relações |
+## 9. Data model
+| Entity | Main fields | Relations |
 |---|---|---|
-| `E-01 Nome` | <campos> | <pertence a / tem muitos> |
+| `E-01 Name` | <fields> | <belongs to / has many> |
 
-## 10. Stack e arquitetura
-| Camada | Escolha | Por quê |
+## 10. Stack and architecture
+| Layer | Choice | Why |
 |---|---|---|
-<Um parágrafo curto de arquitetura, se houver algo além do óbvio (filas, jobs, integrações).>
+<A short architecture paragraph, if there's anything beyond the obvious (queues, jobs, integrations).>
 
-## 11. Decisões
-- **D-01:** <decisão>. Porque <motivo>. Descartado: <alternativa>.
+## 11. Decisions
+- **D-01:** <decision>. Because <reason>. Rejected: <alternative>.
 
-## 12. Riscos aceitos
-| ID | Risco | Levantado por | Mitigação | Revisar quando |
+## 12. Accepted risks
+| ID | Risk | Raised by | Mitigation | Revisit when |
 |---|---|---|---|---|
 
-## 13. Parecer da banca
-| Persona | Sinal | Ponto principal | Como foi tratado |
+## 13. Board verdict
+| Persona | Signal | Main point | How it was handled |
 |---|---|---|---|
-| Helena · Investidora | 🟢 | | |
-| Caio · Dev sênior | 🟡 | | |
-| Bia · Cliente ideal | 🟢 | | |
+| Helena · Investor | 🟢 | | |
+| Caio · Senior dev | 🟡 | | |
+| Bia · Ideal customer | 🟢 | | |
 
-## 14. Ordem de construção
-1. <fase>: <o que entrega> (RF-xx, RF-yy)
-<Mesma sequência do PLANO.md, se ele existir.>
+## 14. Build order
+1. <phase>: <what it delivers> (FR-xx, FR-yy)
+<Same sequence as PLAN.md, if it exists.>
 ```
 
-## Variações por tipo de documento
+## Variations by document type
 
-- **Feature em produto existente:** a seção 3 vira "Quem é afetado" (pode ser curta); a seção 9 mostra só as entidades novas ou alteradas; acrescente "Impacto no que já existe" depois da seção 6 (telas, APIs e dados que mudam e como migrar).
-- **Técnico ou refatoração:** a seção 2 vira "Situação atual e problema técnico"; as seções 3 e 6 podem sair; acrescente "Plano de migração e rollback" depois da seção 10; as métricas são técnicas (tempo de build, custo, erros), mas pelo menos uma precisa ligar a mudança ao negócio.
-- **Modo rápido:** a seção 13 traz o parecer relâmpago (uma linha por persona). Diga isso na própria seção.
+- **Feature in an existing product:** section 3 becomes "Who's affected" (can be short); section 9 shows only new or changed entities; add "Impact on what exists" after section 6 (screens, APIs and data that change and how to migrate).
+- **Technical or refactor:** section 2 becomes "Current situation and technical problem"; sections 3 and 6 can go; add "Migration and rollback plan" after section 10; metrics are technical (build time, cost, errors), but at least one has to tie the change to the business.
+- **Fast mode:** section 13 carries the lightning opinion (one line per persona). Say so in the section itself.
 
-## Checklist antes de salvar
+## Checklist before saving
 
-Releia o PRD contra esta lista. Se algo falhar, corrija antes de entregar.
+Reread the PRD against this list. If anything fails, fix it before delivering.
 
-- [ ] Nenhuma pergunta em aberto, nenhum "a definir", nenhum "TBD".
-- [ ] Todo RF tem pelo menos um critério de aceite verificável e um caso de erro quando houver entrada do usuário.
-- [ ] Todo item de "Dentro" do escopo aponta para um RF, e todo RF está no escopo.
-- [ ] A lista de "Fora" existe e tem motivo em cada item, e nada do que está fora aparece prometido em outro lugar (resumo, posicionamento, fluxos).
-- [ ] Toda decisão tem o porquê.
-- [ ] A ordem de construção não contradiz dependências (não se constrói o pagamento antes do cadastro que ele usa).
-- [ ] O parecer da banca é o que ela disse de fato, sem suavizar sinais vermelhos.
-- [ ] Nenhum número de mercado sem fonte ou sem a marcação de hipótese.
-- [ ] Nenhuma estimativa de código em semanas ou meses; quando há espera de terceiros, ela aparece separada e com o pedido começando na Fase 1.
-- [ ] Nada no documento que não esteja na ficha de decisão ou no `ideia.md`.
+- [ ] The whole document is in the session's language, including headings and labels.
+- [ ] No open questions, no "to be defined", no "TBD".
+- [ ] Every FR has at least one verifiable acceptance criterion and an error case when there's user input.
+- [ ] Every "In" scope item points to an FR, and every FR is in scope.
+- [ ] The "Out" list exists with a reason on each item, and nothing that's out is promised elsewhere (summary, positioning, flows).
+- [ ] Every decision has the why.
+- [ ] The build order doesn't contradict dependencies (you don't build payments before the sign-up they use).
+- [ ] The board verdict is what it actually said, without softening red signals.
+- [ ] No market number without a source or the hypothesis label.
+- [ ] No code estimate in weeks or months; when there's third-party waiting, it appears separately, with the request starting in Phase 1.
+- [ ] Nothing in the document that isn't in the decision sheet or in `idea.md`.

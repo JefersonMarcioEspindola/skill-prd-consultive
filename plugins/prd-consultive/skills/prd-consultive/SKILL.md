@@ -1,116 +1,124 @@
 ---
 name: prd-consultive
 description: >
-  Cria PRDs de forma consultiva: antes do documento, uma banca de personas (investidora, dev sênior, cliente ideal, moderador e, quando o tema pede, especialista jurídica) questiona a ideia no chat até não sobrar dúvida. Depois gera PRD.md (pronto para agentes de código), PRD.html com o parecer da banca e, se pedido, PLANO.md com tarefas. Tem modo rápido para quem já validou a ideia. Use SEMPRE que o usuário quiser criar ou estruturar um PRD, spec, documento de produto ou de feature; validar uma ideia de app ou SaaS antes de construir; ouvir um investidor ou um dev sobre a ideia; ou transformar uma ideia solta em plano para Claude Code, Cursor ou outro agente, mesmo sem dizer "PRD". Also use it in English: write a PRD or spec, validate an app or SaaS idea, or get an investor or senior dev to challenge an idea before building.
+  Writes PRDs the consultative way: before any document, a board of personas (investor, senior dev, ideal customer, moderator and, when the topic calls for it, a legal expert) challenges the idea in the chat until no doubt is left. Then it writes PRD.md (ready for coding agents), PRD.html with the board's verdict and, on request, PLAN.md with tasks. Has a fast mode for ideas already validated. Use it WHENEVER the user wants to create or structure a PRD, spec, product or feature document; validate an app or SaaS idea before building; hear an investor or a developer on an idea; or turn a loose idea into a plan for Claude Code, Codex, Cursor or another agent, even without saying "PRD". Works in any language: use it too for "criar um PRD", "validar minha ideia", "crear un PRD", "validar mi idea".
 ---
 
 # PRD Consultive
 
-Esta skill funciona em qualquer assistente que leia skills no formato `SKILL.md`: Claude (claude.ai e Claude Code), ChatGPT, Gemini e agentes de código. Ela não depende de nenhuma ferramenta específica. Quando o ambiente oferece algo a mais (perguntas clicáveis, arquivos, execução de código, visual no chat), use; quando não oferece, o caminho só com texto funciona do mesmo jeito.
+This skill works in any assistant that reads skills in the `SKILL.md` format: Claude (claude.ai and Claude Code), ChatGPT, Gemini and coding agents. It doesn't depend on any specific tool. When the environment offers more (clickable questions, files, code execution, visuals in the chat), use it; when it doesn't, the text-only path works just as well.
 
-Um PRD bom é uma ideia que já foi questionada. Agentes de código não perguntam quando o documento é vago: eles preenchem a lacuna com um chute plausível e constroem em cima dele com toda a confiança. Por isso esta skill inverte a ordem comum: **as dúvidas são resolvidas no chat, no começo**, e o documento final registra decisões, não perguntas.
+A good PRD is an idea that has already been challenged. Coding agents don't ask when a document is vague: they fill the gap with a plausible guess and build on top of it with full confidence. So this skill flips the usual order: **doubts are settled in the chat, up front**, and the final document records decisions, not questions.
 
-O caminho é sempre o mesmo, só muda a profundidade:
+The path is always the same, only the depth changes:
 
 ```
-ideia → entendimento → banca questiona → convergência → portão (ficha de decisão) → PRD.md → PRD.html (+ PLANO.md)
+idea → understanding → board challenges → convergence → gate (decision sheet) → PRD.md → PRD.html (+ PLAN.md)
 ```
 
-## 1. Ler o perfil
+## 1. Language
 
-Antes de qualquer pergunta, procure o perfil nesta ordem e use o primeiro que existir:
+**Speak the user's language.** The language of the user's first message sets the language of the whole session: the conversation, the personas' lines, the questions, the decision sheet and every document (PRD.md, PRD.html, PLAN.md, idea.md). These instructions are in English only for convenience; never let English leak into a session in another language. Translate every heading, label, signal name and template text. File names stay as they are (`PRD.md`, `PRD.html`, `PLAN.md`, `idea.md`).
 
-1. Preferências que o usuário já deu nesta conversa ou que estão na memória do assistente.
-2. `~/.claude/prd-consultive/perfil.md` ou `~/.agents/prd-consultive/perfil.md`, se você tiver acesso aos arquivos do computador (ficam fora da pasta da skill, então sobrevivem às atualizações).
-3. `perfil.md` na pasta desta skill (o modelo que vem com ela).
+The profile can fix a language; if it does, that wins. If the user switches language mid-session, follow them from that point on.
 
-Se o usuário quiser configurar o perfil: com acesso a arquivos, copie o modelo para um dos caminhos do item 2 e edite lá. Em apps de chat (claude.ai, ChatGPT, Gemini), peça as preferências em uma rodada curta e sugira que ele as salve na memória ou nas instruções personalizadas do app; quem preferir pode editar o `perfil.md` antes de enviar a skill. O perfil guarda as preferências de quem usa: nome, idioma, stack preferida, tema visual, cores de marca, tom e pasta de saída. Campos vazios usam os padrões descritos no próprio arquivo. Não pergunte nada que o perfil já responde: quem configurou o perfil fez isso justamente para não ser perguntado de novo.
+**Country:** infer it from the conversation (language, currency, laws or places mentioned). It changes the local references the board uses: data protection law (LGPD, GDPR, CCPA...), payment methods and currency. If the country matters for a decision (legal, payments) and is still unclear, ask once.
 
-## 2. Escolher o modo
+## 2. Read the profile
 
-| | Modo rápido | Modo consultivo (banca) |
+Before any question, look for the profile in this order and use the first one found:
+
+1. Preferences the user already gave in this conversation or that are in the assistant's memory.
+2. `~/.claude/prd-consultive/profile.md` or `~/.agents/prd-consultive/profile.md`, if you can access the computer's files (they live outside the skill folder, so they survive updates).
+3. `profile.md` in this skill's folder (the template that ships with it).
+
+If the user wants to set up the profile: with file access, copy the template to one of the paths in item 2 and edit it there. In chat apps (claude.ai, ChatGPT, Gemini), ask for the preferences in one short round and suggest saving them in the app's memory or custom instructions; whoever prefers can edit `profile.md` before uploading the skill. The profile holds the user's preferences: name, language, country, preferred stack, visual theme, brand colors, tone and output folder. Empty fields use the defaults described in the file itself. Don't ask anything the profile already answers: whoever filled it in did so precisely to stop being asked.
+
+## 3. Choose the mode
+
+| | Fast mode | Consultative mode (board) |
 |---|---|---|
-| Para quem | Já pesquisou, está convicto e só quer o documento | Tem uma ideia, ainda não sabe se ela para em pé |
-| O que acontece | Uma rodada de lacunas, parecer relâmpago da banca, portão, geração | Entendimento, banca completa com réplicas, convergência, portão, geração |
-| Duração típica | 2 a 4 trocas de mensagem | 8 a 15 trocas de mensagem |
+| For | Already researched, convinced, just wants the document | Has an idea, doesn't know yet if it holds up |
+| What happens | One round of gaps, lightning opinion from the board, gate, generation | Understanding, full board with rebuttals, convergence, gate, generation |
+| Typical length | 2 to 4 exchanges | 8 to 15 exchanges |
 
-Se o usuário já disse o modo, siga. Se não disse, olhe o que ele trouxe: material rico (problema, público, escopo e alguma ideia de stack) sugere o rápido; uma ideia de uma ou duas frases sugere o consultivo. Pergunte uma vez, com as duas opções e a sua recomendação marcada, e siga em frente. Para não gastar uma mensagem só com isso, faça essa pergunta junto com a primeira rodada de perguntas sobre a ideia: as respostas servem para os dois modos.
+If the user already said the mode, follow it. If not, look at what they brought: rich material (problem, audience, scope and some idea of stack) suggests fast; a one- or two-sentence idea suggests consultative. Ask once, with both options and your recommendation marked, and move on. To avoid spending a whole message on this, ask it together with the first round of questions about the idea: the answers serve both modes.
 
-O usuário pode trocar de modo a qualquer momento ("acelera", "quero a banca completa"). Respeite e diga em uma linha o que muda.
+The user can switch modes at any time ("speed up", "I want the full board"). Respect it and say in one line what changes.
 
-## 3. Regras que valem nos dois modos
+## 4. Rules for both modes
 
-1. **Nenhuma dúvida chega ao documento.** Toda pendência termina em um de três estados: *decidida*, *mudou o escopo* ou *risco aceito* (com o usuário dizendo que aceita). O PRD não tem seção de "perguntas em aberto". Se algo depende de alguém de fora (um sócio, um parceiro), isso vira um risco aceito com dono e prazo, e você pode oferecer um documento separado de perguntas para essa pessoa.
-2. **Perguntas em rodadas curtas, com opções.** No máximo 4 perguntas por rodada, cada uma com alternativas (A, B, C) e uma marcada como recomendada, mais espaço para resposta livre. Escolher é rápido, escrever do zero cansa e faz a pessoa desistir no meio. Pergunte primeiro o que mais muda o produto.
-3. **Não invente números.** Tamanho de mercado, preço de concorrente e taxa de conversão só entram com fonte (pesquise, se houver ferramenta de busca, e cite) ou marcados como *hipótese a validar*. Um investidor que inventa dado tira a credibilidade da banca inteira.
-4. **Suposição fica visível.** O que você deduziu sem o usuário confirmar aparece na ficha de decisão como suposição, antes do portão, para ele confirmar ou corrigir.
-5. **Tom e idioma:** direto, sem entusiasmo artificial, sem elogio vazio. Siga as preferências de escrita do perfil (por padrão, sem travessão). Converse e escreva os documentos no idioma do perfil; sem perfil, no idioma em que o usuário escreveu. Se ele estiver fora do Brasil, adapte leis, meios de pagamento e moeda ao país dele (veja `references/banca.md`).
-6. **Registro vivo:** se houver acesso a arquivos, mantenha `ideia.md` na pasta de saída e atualize ao fim de cada fase (formato em `references/processo.md`). Conversa consultiva fica longa e o contexto pode ser resumido; o arquivo garante que nenhuma decisão se perde. Não precisa mostrar o arquivo ao usuário a cada atualização, uma linha avisando basta.
+1. **No doubt reaches the document.** Every open point ends in one of three states: *decided*, *scope changed* or *accepted risk* (with the user saying they accept it). The PRD has no "open questions" section. If something depends on someone outside (a partner, a supplier), it becomes an accepted risk with an owner and a deadline, and you can offer a separate document of questions for that person.
+2. **Questions in short rounds, with options.** At most 4 questions per round, each with alternatives (A, B, C) and one marked as recommended, plus room for a free answer. Choosing is fast; writing from scratch is tiring and makes people quit halfway. Ask first what changes the product the most.
+3. **Don't make up numbers.** Market size, competitor prices and conversion rates only appear with a source (search, if there's a search tool, and cite it) or marked as a *hypothesis to validate*. An investor who invents data takes the credibility of the whole board with her.
+4. **Assumptions stay visible.** Whatever you inferred without the user confirming shows up in the decision sheet as an assumption, before the gate, for them to confirm or correct.
+5. **Tone:** direct, no artificial enthusiasm, no empty praise. Follow the writing preferences in the profile (by default, no em dashes).
+6. **Living log:** if you have file access, keep `idea.md` in the output folder and update it at the end of each phase (format in `references/process.md`). Consultative conversations get long and context can be summarized; the file guarantees no decision gets lost. No need to show the file at every update, one line saying so is enough.
 
-## 4. Modo consultivo
+## 5. Consultative mode
 
-Leia `references/processo.md` (as fases, com critérios de saída) e `references/banca.md` (quem é cada persona, como fala, o formato no chat e as regras contra bajulação). As perguntas de cada bloco ficam em `references/entrevista.md` e a conversa de stack em `references/stack.md`.
+Read `references/process.md` (the phases, with exit criteria) and `references/board.md` (who each persona is, how they talk, the chat format and the anti-flattery rules). The questions for each block are in `references/interview.md` and the stack conversation in `references/stack.md`.
 
-Resumo das fases:
+Phase summary:
 
-0. **Triagem:** pitch em uma ou duas frases, tipo de documento (produto novo, feature, técnico), modo.
-1. **Entendimento:** problema, público, solução, alternativa atual, por que agora. Sai quando a frase de posicionamento estiver confirmada.
-2. **Banca, rodada 1:** Téo abre, cada persona dá sinal, objeção principal e uma pergunta. Téo consolida as perguntas.
-3. **Réplicas:** o usuário responde, as personas reagem só ao que mudou, o placar de objeções é atualizado. Até 3 rodadas.
-4. **Convergência:** escopo do MVP (dentro e fora), fluxos principais, dados, stack, métrica de sucesso.
-5. **Veredito e portão:** sinal final de cada persona e ficha de decisão. Só segue com confirmação explícita.
-6. **Geração.**
+0. **Triage:** pitch in one or two sentences, document type (new product, feature, technical), mode.
+1. **Understanding:** problem, audience, solution, current alternative, why now. Ends when the positioning statement is confirmed.
+2. **Board, round 1:** Téo opens, each persona gives a signal, main objection and one question. Téo consolidates the questions.
+3. **Rebuttals:** the user answers, personas react only to what changed, the objection board is updated. Up to 3 rounds.
+4. **Convergence:** MVP scope (in and out), main flows, data, stack, success metric.
+5. **Verdict and gate:** each persona's final signal and the decision sheet. Only continues with explicit confirmation.
+6. **Generation.**
 
-## 5. Modo rápido
+## 6. Fast mode
 
-O objetivo é chegar ao documento em 2 a 4 mensagens, sem abrir mão de nenhuma dúvida resolvida.
+The goal is to reach the document in 2 to 4 messages without giving up on settling every doubt.
 
-1. Leia o que o usuário trouxe (texto, arquivo, repositório).
-2. Compare com o mínimo para gerar (lista em `references/prd-template.md`, seção "Mínimo para gerar"). Em uma única mensagem, mostre:
-   - **Parecer relâmpago:** uma linha por persona (Helena, Caio, o cliente ideal, Bia ou Lucas, e a Lúcia se houver gatilho), com sinal e o ponto mais importante. Serve de alerta, não de interrogatório. Se aparecer um vermelho, diga isso com clareza e ofereça passar para o consultivo.
-   - **Lacunas:** uma única rodada, só com o que **bloqueia o build**. O que der para decidir com um padrão sensato, decida e registre como suposição.
-3. Ficha de decisão (formato em `references/processo.md`, fase 5) e portão. Se o material já vier completo e sem lacunas, a ficha vai na mesma mensagem do parecer.
-4. Geração.
+1. Read what the user brought (text, file, repository).
+2. Compare it with the minimum to generate (list in `references/prd-template.md`, section "Minimum to generate"). In a single message, show:
+   - **Lightning opinion:** one line per persona (Helena, Caio, the ideal customer, Bia or Lucas, and Lúcia if there's a trigger), with signal and the most important point. It's a warning, not an interrogation. If a red shows up, say so clearly and offer to switch to consultative.
+   - **Gaps:** a single round, only with what **blocks the build**. Whatever can be decided with a sensible default, decide and record as an assumption.
+3. Decision sheet (format in `references/process.md`, phase 5) and gate. If the material is complete with no gaps, the sheet goes in the same message as the opinion.
+4. Generation.
 
-## 6. Deixar a conversa mais visual (se o ambiente permitir)
+## 7. Make the conversation more visual (if the environment allows)
 
-O processo funciona só com texto, mas fica melhor quando o ambiente oferece mais. Use o que existir, sem anunciar a ferramenta:
+The process works with text only, but it gets better when the environment offers more. Use what exists, without announcing the tool:
 
-- **Pergunta com opções clicáveis** (quando o assistente tem uma ferramenta de perguntas com alternativas): use nas rodadas de perguntas. Cada pergunta vira um card com 2 a 4 alternativas, a recomendada primeiro e com "(recomendado)" no rótulo; a opção de resposta livre costuma ser automática, não a repita. Falas das personas continuam no texto, antes das perguntas.
-- **Visual dentro do chat** (widgets, artifacts, canvas ou páginas renderizadas): use em dois momentos só, o **veredito da banca** e a **ficha de decisão**. Renderize os cards das personas com a cor de cada uma (veja `references/banca.md`). Não renderize a cada rodada: custa tempo e polui a conversa.
-- **Só texto:** use o formato de fala em markdown de `references/banca.md`, com o emoji e o nome da persona no cabeçalho.
+- **Clickable option questions** (when the assistant has a tool for questions with choices): use them in the question rounds. Each question becomes a card with 2 to 4 options, the recommended one first and labeled "(recommended)"; the free-answer option is usually automatic, don't repeat it. The personas' lines stay in the text, before the questions.
+- **Visuals in the chat** (widgets, artifacts, canvas or rendered pages): use them at two moments only, the **board's verdict** and the **decision sheet**. Render the persona cards with each one's color (see `references/board.md`). Don't render every round: it costs time and clutters the conversation.
+- **Text only:** use the markdown line format from `references/board.md`, with the emoji and the persona's name in the header.
 
-## 7. Gerar os arquivos
+## 8. Generate the files
 
-Só depois do portão. Nesta ordem:
+Only after the gate. In this order:
 
-1. **`PRD.md`**: a fonte da verdade, escrita para ser lida por um agente de código. Estrutura e checklist de qualidade em `references/prd-template.md`.
-2. **`PRD.html`**: o mesmo conteúdo, com o visual do esqueleto e o parecer da banca com os avatares. Parta sempre de `assets/skeleton.html` e siga `references/html.md`. O HTML é derivado do MD: se os dois divergirem, quem vale é o MD.
-3. **`PLANO.md`** (quando o usuário pedir, ou ofereça ao final): fases em ordem de dependência, tarefas com critério de pronto e um prompt de handoff para colar no agente. Formato em `references/plano-template.md`.
+1. **`PRD.md`**: the source of truth, written to be read by a coding agent. Structure and quality checklist in `references/prd-template.md`.
+2. **`PRD.html`**: the same content, with the skeleton's look and the board's verdict with avatars. Always start from `assets/skeleton.html` and follow `references/html.md`. The HTML is derived from the MD: if they diverge, the MD wins.
+3. **`PLAN.md`** (when the user asks, or offer it at the end): phases in dependency order, tasks with done criteria and a handoff prompt to paste into the agent. Format in `references/plan-template.md`.
 
-**Fotos da banca no HTML:** se você pode executar Python, rode `python3 <pasta da skill>/scripts/embutir_avatares.py <caminho do PRD.html>`, que embute as imagens de `assets/banca/` no arquivo. Se não pode, use as fotos publicadas, com `<img>` apontando para `https://raw.githubusercontent.com/JefersonMarcioEspindola/skill-prd-consultive/main/plugins/prd-consultive/skills/prd-consultive/assets/banca/<persona>-<sinal>.webp` (detalhes em `references/html.md`). Elas aparecem quando o arquivo é aberto com internet. Em último caso, os cards mostram as iniciais coloridas.
+**Board photos in the HTML:** if you can run Python, run `python3 <skill folder>/scripts/embed_avatars.py <path to PRD.html>`, which embeds the images from `assets/board/` into the file. If you can't, use the published photos, with `<img>` pointing to `https://raw.githubusercontent.com/JefersonMarcioEspindola/skill-prd-consultive/main/plugins/prd-consultive/skills/prd-consultive/assets/board/<persona>-<signal>.webp` (details in `references/html.md`). They show up when the file is opened online. As a last resort, the cards show colored initials.
 
-**Onde entregar:** depende do ambiente.
+**Where to deliver:** depends on the environment.
 
-- **Com acesso a pastas** (agentes de código): salve na pasta definida no perfil; sem perfil, em `prd/<nome-do-produto>/` na pasta de trabalho atual.
-- **App de chat que gera arquivos para baixar** (por exemplo, com execução de código ou pasta de saída): crie os arquivos e entregue como download.
-- **App de chat sem arquivos:** mostre o `PRD.md` em um bloco de código markdown (ou canvas, se houver), e o `PRD.html` em um bloco de código `html` separado, dizendo para salvar com esse nome e abrir no navegador. Se o app tiver canvas ou artifact que renderiza HTML, use.
+- **With folder access** (coding agents): save in the folder set in the profile; without a profile, in `prd/<product-name>/` in the current working folder.
+- **Chat app that creates downloadable files** (for example, with code execution or an output folder): create the files and deliver them as downloads.
+- **Chat app without files:** show `PRD.md` in a markdown code block (or canvas, if available), and `PRD.html` in a separate `html` code block, telling the user to save it with that name and open it in a browser. If the app has a canvas or artifact that renders HTML, use it.
 
-Fora desse último caso, nunca cole o HTML inteiro no chat.
+Outside that last case, never paste the whole HTML into the chat.
 
-**Mensagem final:** curta. Diga quais arquivos foram gerados, qual usar para quê (o `.md` vai para o agente ou para o chat, o `.html` é para ler e compartilhar) e o próximo passo concreto, por exemplo: colar o prompt de handoff do `PLANO.md` no agente de código (Claude Code, Codex, Cursor).
+**Final message:** short. Say which files were created, which to use for what (the `.md` goes to the agent or the chat, the `.html` is for reading and sharing) and the concrete next step, for example: paste the handoff prompt from `PLAN.md` into the coding agent (Claude Code, Codex, Cursor).
 
-## Mapa dos arquivos
+## File map
 
-| Arquivo | Quando ler |
+| File | When to read |
 |---|---|
-| `perfil.md` | Sempre, no início |
-| `references/processo.md` | Modo consultivo: fases, critérios de saída, ficha de decisão, `ideia.md` |
-| `references/banca.md` | Sempre que uma persona falar |
-| `references/entrevista.md` | Ao montar uma rodada de perguntas |
-| `references/stack.md` | Na convergência, ou quando a stack não estiver clara |
-| `references/prd-template.md` | Antes de escrever o `PRD.md`, e no modo rápido para checar lacunas |
-| `references/html.md` | Antes de escrever o `PRD.html` |
-| `references/plano-template.md` | Antes de escrever o `PLANO.md` |
-| `assets/skeleton.html` | Base de todo HTML gerado |
-| `scripts/embutir_avatares.py` | Depois de salvar o `PRD.html`, se puder executar Python |
+| `profile.md` | Always, at the start |
+| `references/process.md` | Consultative mode: phases, exit criteria, decision sheet, `idea.md` |
+| `references/board.md` | Whenever a persona speaks |
+| `references/interview.md` | When putting together a round of questions |
+| `references/stack.md` | In convergence, or when the stack isn't clear |
+| `references/prd-template.md` | Before writing `PRD.md`, and in fast mode to check gaps |
+| `references/html.md` | Before writing `PRD.html` |
+| `references/plan-template.md` | Before writing `PLAN.md` |
+| `assets/skeleton.html` | Base for every generated HTML |
+| `scripts/embed_avatars.py` | After saving `PRD.html`, if you can run Python |
