@@ -1,10 +1,10 @@
 ---
-name: prd-consultivo
+name: prd-consultive
 description: >
   Cria PRDs de forma consultiva: antes do documento, uma banca de personas (investidora, dev sênior, cliente ideal, moderador e, quando o tema pede, especialista jurídica) questiona a ideia no chat até não sobrar dúvida. Depois gera PRD.md (pronto para agentes de código), PRD.html com o parecer da banca e, se pedido, PLANO.md com tarefas. Tem modo rápido para quem já validou a ideia. Use SEMPRE que o usuário quiser criar ou estruturar um PRD, spec, documento de produto ou de feature; validar uma ideia de app ou SaaS antes de construir; ouvir um investidor ou um dev sobre a ideia; ou transformar uma ideia solta em plano para Claude Code, Cursor ou outro agente, mesmo sem dizer "PRD".
 ---
 
-# PRD Consultivo
+# PRD Consultive
 
 Um PRD bom é uma ideia que já foi questionada. Agentes de código não perguntam quando o documento é vago: eles preenchem a lacuna com um chute plausível e constroem em cima dele com toda a confiança. Por isso esta skill inverte a ordem comum: **as dúvidas são resolvidas no chat, no começo**, e o documento final registra decisões, não perguntas.
 
@@ -18,7 +18,7 @@ ideia → entendimento → banca questiona → convergência → portão (ficha 
 
 Antes de qualquer pergunta, procure o perfil nesta ordem e use o primeiro que existir:
 
-1. `~/.claude/prd-consultivo/perfil.md` (fica fora da pasta da skill, então sobrevive às atualizações do plugin);
+1. `~/.claude/prd-consultive/perfil.md` (fica fora da pasta da skill, então sobrevive às atualizações do plugin);
 2. `perfil.md` na pasta desta skill (o modelo que vem com ela).
 
 Se o usuário quiser preencher o perfil e você tiver acesso a arquivos, copie o modelo para o primeiro caminho e edite lá. Em ambientes sem acesso à pasta pessoal (como o claude.ai), use o da pasta da skill. O perfil guarda as preferências de quem usa: nome, idioma, stack preferida, tema visual, cores de marca, tom e pasta de saída. Campos vazios usam os padrões descritos no próprio arquivo. Não pergunte nada que o perfil já responde: quem configurou o perfil fez isso justamente para não ser perguntado de novo.

@@ -4,22 +4,22 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/cover.pt-BR.png" alt="prd-consultivo: sua ideia passa por uma banca antes de virar PRD" width="100%">
+  <img src="docs/assets/cover.pt-BR.png" alt="prd-consultive: sua ideia passa por uma banca antes de virar PRD" width="100%">
 </p>
 
 <p align="center">
-  <a href="#instalação"><img alt="Instalar no Claude Code" src="https://img.shields.io/badge/Instalar%20no-Claude%20Code-0B0B0B?style=for-the-badge&logo=claude&logoColor=white"></a>
-  <a href="#prompt-inicial"><img alt="Prompt inicial" src="https://img.shields.io/badge/Copiar-prompt%20inicial-404040?style=for-the-badge"></a>
+  <a href="#instalação"><img alt="Instalar no Claude Code" src="https://img.shields.io/badge/Instalar%20no-Claude%20Code-1D4ED8?style=for-the-badge&logo=claude&logoColor=white"></a>
+  <a href="#prompt-inicial"><img alt="Prompt inicial" src="https://img.shields.io/badge/Copiar-prompt%20inicial-0B2A6F?style=for-the-badge"></a>
 </p>
 
 <p align="center">
-  <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-suportado-0B0B0B">
-  <img alt="claude.ai" src="https://img.shields.io/badge/claude.ai-suportado-0B0B0B">
-  <img alt="Saída" src="https://img.shields.io/badge/sa%C3%ADda-PRD.md%20%C2%B7%20PRD.html%20%C2%B7%20PLANO.md-404040">
-  <img alt="Licença MIT" src="https://img.shields.io/badge/licen%C3%A7a-MIT-404040">
+  <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-suportado-1D4ED8">
+  <img alt="claude.ai" src="https://img.shields.io/badge/claude.ai-suportado-1D4ED8">
+  <img alt="Saída" src="https://img.shields.io/badge/sa%C3%ADda-PRD.md%20%C2%B7%20PRD.html%20%C2%B7%20PLANO.md-0B2A6F">
+  <img alt="Licença MIT" src="https://img.shields.io/badge/licen%C3%A7a-MIT-0B2A6F">
 </p>
 
-# prd-consultivo
+# prd-consultive
 
 **Uma skill do Claude que cria PRDs do jeito consultivo: antes de existir documento, uma banca de personas questiona
 a sua ideia no chat. Só quando não sobra dúvida ela escreve o PRD, pronto para o Claude Code, o Cursor ou qualquer
@@ -75,12 +75,12 @@ confirmar ou corrigir.
 ## A banca
 
 <p>
-  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/helena-neutro.webp" width="88" alt="Helena">
-  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/caio-neutro.webp" width="88" alt="Caio">
-  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/bia-neutro.webp" width="88" alt="Bia">
-  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/lucas-neutro.webp" width="88" alt="Lucas">
-  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/teo-neutro.webp" width="88" alt="Téo">
-  <img src="plugins/prd-consultivo/skills/prd-consultivo/assets/banca/lucia-neutro.webp" width="88" alt="Dra. Lúcia">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/helena-neutro.webp" width="88" alt="Helena">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/caio-neutro.webp" width="88" alt="Caio">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/bia-neutro.webp" width="88" alt="Bia">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/lucas-neutro.webp" width="88" alt="Lucas">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/teo-neutro.webp" width="88" alt="Téo">
+  <img src="plugins/prd-consultive/skills/prd-consultive/assets/banca/lucia-neutro.webp" width="88" alt="Dra. Lúcia">
 </p>
 
 | Quem | O que quer saber |
@@ -131,29 +131,29 @@ claude.ai com skills. Python 3 é opcional (serve para embutir as fotos da banca
 Dentro do Claude Code:
 
 ```text
-/plugin marketplace add JefersonMarcioEspindola/skill-prd-consultivo
-/plugin install prd-consultivo@prd-consultivo
+/plugin marketplace add JefersonMarcioEspindola/skill-prd-consultive
+/plugin install prd-consultive@prd-consultive
 ```
 
-Reinicie o Claude Code se ele pedir. Para atualizar depois: `/plugin marketplace update prd-consultivo`.
+Reinicie o Claude Code se ele pedir. Para atualizar depois: `/plugin marketplace update prd-consultive`.
 
 ### Opção 2: CLI de skills
 
 ```bash
-npx skills add JefersonMarcioEspindola/skill-prd-consultivo
+npx skills add JefersonMarcioEspindola/skill-prd-consultive
 ```
 
 ### Opção 3: manual
 
 ```bash
-git clone https://github.com/JefersonMarcioEspindola/skill-prd-consultivo.git
+git clone https://github.com/JefersonMarcioEspindola/skill-prd-consultive.git
 mkdir -p ~/.claude/skills
-cp -R skill-prd-consultivo/plugins/prd-consultivo/skills/prd-consultivo ~/.claude/skills/
+cp -R skill-prd-consultive/plugins/prd-consultive/skills/prd-consultive ~/.claude/skills/
 ```
 
 ### claude.ai
 
-Compacte a pasta `plugins/prd-consultivo/skills/prd-consultivo` em um `.zip` e envie em Configurações → Capacidades →
+Compacte a pasta `plugins/prd-consultive/skills/prd-consultive` em um `.zip` e envie em Configurações → Capacidades →
 Skills.
 
 ## Prompt inicial
@@ -161,7 +161,7 @@ Skills.
 Abra o Claude Code na pasta onde quer os documentos (ou no repositório de um produto que já existe) e cole:
 
 ```text
-Use a skill prd-consultivo. Coloca esta ideia na banca:
+Use a skill prd-consultive. Coloca esta ideia na banca:
 
 Ideia: <uma ou duas frases, ex.: "um app para personal trainers mandarem treino e cobrarem a mensalidade">
 Para quem: <o mais específico que conseguir, ou "ainda não sei">
@@ -200,13 +200,13 @@ Preencha o perfil uma vez e a skill para de perguntar o que já sabe: idioma, pa
 Se instalou do jeito manual:
 
 ```bash
-mkdir -p ~/.claude/prd-consultivo
-cp ~/.claude/skills/prd-consultivo/perfil.md ~/.claude/prd-consultivo/perfil.md
+mkdir -p ~/.claude/prd-consultive
+cp ~/.claude/skills/prd-consultive/perfil.md ~/.claude/prd-consultive/perfil.md
 ```
 
-Edite a cópia em `~/.claude/prd-consultivo/`. Esse lugar sobrevive às atualizações do plugin; a skill procura lá
+Edite a cópia em `~/.claude/prd-consultive/`. Esse lugar sobrevive às atualizações do plugin; a skill procura lá
 primeiro e, se não achar, usa o modelo dentro da pasta da skill. Se instalou como plugin, peça ao Claude *"configura o
-meu perfil do prd-consultivo"* que ele cria a cópia para você.
+meu perfil do prd-consultive"* que ele cria a cópia para você.
 
 ## Idioma e país
 
@@ -227,9 +227,9 @@ navegador).
 
 ## Monte a sua banca
 
-As fotos ficam em `plugins/prd-consultivo/skills/prd-consultivo/assets/banca/`, uma por persona e sinal
+As fotos ficam em `plugins/prd-consultive/skills/prd-consultive/assets/banca/`, uma por persona e sinal
 (`helena-neutro.webp`, `helena-verde.webp`, `helena-amarelo.webp`, `helena-vermelho.webp`...). Troque pelas suas,
-mantendo os nomes. O [`LEIA-ME.md`](plugins/prd-consultivo/skills/prd-consultivo/assets/banca/LEIA-ME.md) dessa pasta
+mantendo os nomes. O [`LEIA-ME.md`](plugins/prd-consultive/skills/prd-consultive/assets/banca/LEIA-ME.md) dessa pasta
 tem os tamanhos, as cores de fundo e uma dica para gerar um conjunto com o mesmo estilo. Sem fotos, os cards mostram
 as iniciais coloridas.
 

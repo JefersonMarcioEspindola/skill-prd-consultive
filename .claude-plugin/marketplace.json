@@ -1,18 +1,28 @@
 {
-  "name": "prd-consultivo",
-  "owner": { "name": "Jeferson Marcio Espindola", "url": "https://github.com/JefersonMarcioEspindola" },
+  "name": "prd-consultive",
+  "owner": {
+    "name": "Jeferson Marcio Espindola",
+    "url": "https://github.com/JefersonMarcioEspindola"
+  },
   "metadata": {
-    "description": "PRDs consultivos: uma banca de personas questiona a ideia no chat antes de gerar o PRD.",
-    "version": "0.2.0"
+    "description": "Consultative PRDs: a board of personas questions your idea in the chat before the PRD is written.",
+    "version": "0.2.1"
   },
   "plugins": [
     {
-      "name": "prd-consultivo",
-      "source": "./plugins/prd-consultivo",
-      "description": "Skill que valida a ideia com uma banca (investidora, dev sênior, cliente ideal, moderador, especialista jurídica) e gera PRD.md, PRD.html e PLANO.md.",
-      "version": "0.2.0",
+      "name": "prd-consultive",
+      "source": "./plugins/prd-consultive",
+      "description": "Validates your idea with a board (investor, senior dev, ideal customer, moderator, legal expert) and writes PRD.md, PRD.html and PLANO.md.",
+      "version": "0.2.1",
       "category": "productivity",
-      "keywords": ["prd", "product", "spec", "mvp", "validation", "planning"]
+      "keywords": [
+        "prd",
+        "product",
+        "spec",
+        "mvp",
+        "validation",
+        "planning"
+      ]
     }
   ]
 }
