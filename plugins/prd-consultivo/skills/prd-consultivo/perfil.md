@@ -1,11 +1,12 @@
 # Perfil
 
-Preencha uma vez e a skill para de perguntar o que já está aqui. Pode deixar campos em branco: cada um tem um padrão, indicado entre parênteses.
+Preencha uma vez e a skill para de perguntar o que já está aqui. Se instalou como plugin, copie este arquivo para `~/.claude/prd-consultivo/perfil.md` e edite a cópia: a pasta do plugin é substituída a cada atualização. Pode deixar campos em branco: cada um tem um padrão, indicado entre parênteses.
 
 ## Quem usa
 
 - **Nome:** (em branco: a skill não usa nome)
-- **Idioma dos documentos:** (português do Brasil)
+- **Idioma dos documentos:** (o idioma em que você escrever na conversa)
+- **País:** (Brasil). Muda as leis, os meios de pagamento e a moeda que a banca usa como referência.
 - **Experiência com PRD:** (em branco: a skill pergunta o modo. Se escrever "experiente", ela sugere o modo rápido quando o material vier completo)
 
 ## Banca

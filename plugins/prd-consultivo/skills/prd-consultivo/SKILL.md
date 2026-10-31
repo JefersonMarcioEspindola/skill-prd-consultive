@@ -16,7 +16,12 @@ ideia → entendimento → banca questiona → convergência → portão (ficha 
 
 ## 1. Ler o perfil
 
-Antes de qualquer pergunta, leia `perfil.md` na pasta desta skill. Ele guarda as preferências de quem usa: nome, idioma, stack preferida, tema visual, cores de marca, tom e pasta de saída. Campos vazios usam os padrões descritos no próprio arquivo. Não pergunte nada que o perfil já responde: quem configurou o perfil fez isso justamente para não ser perguntado de novo.
+Antes de qualquer pergunta, procure o perfil nesta ordem e use o primeiro que existir:
+
+1. `~/.claude/prd-consultivo/perfil.md` (fica fora da pasta da skill, então sobrevive às atualizações do plugin);
+2. `perfil.md` na pasta desta skill (o modelo que vem com ela).
+
+Se o usuário quiser preencher o perfil e você tiver acesso a arquivos, copie o modelo para o primeiro caminho e edite lá. Em ambientes sem acesso à pasta pessoal (como o claude.ai), use o da pasta da skill. O perfil guarda as preferências de quem usa: nome, idioma, stack preferida, tema visual, cores de marca, tom e pasta de saída. Campos vazios usam os padrões descritos no próprio arquivo. Não pergunte nada que o perfil já responde: quem configurou o perfil fez isso justamente para não ser perguntado de novo.
 
 ## 2. Escolher o modo
 
@@ -36,7 +41,7 @@ O usuário pode trocar de modo a qualquer momento ("acelera", "quero a banca com
 2. **Perguntas em rodadas curtas, com opções.** No máximo 4 perguntas por rodada, cada uma com alternativas (A, B, C) e uma marcada como recomendada, mais espaço para resposta livre. Escolher é rápido, escrever do zero cansa e faz a pessoa desistir no meio. Pergunte primeiro o que mais muda o produto.
 3. **Não invente números.** Tamanho de mercado, preço de concorrente e taxa de conversão só entram com fonte (pesquise, se houver ferramenta de busca, e cite) ou marcados como *hipótese a validar*. Um investidor que inventa dado tira a credibilidade da banca inteira.
 4. **Suposição fica visível.** O que você deduziu sem o usuário confirmar aparece na ficha de decisão como suposição, antes do portão, para ele confirmar ou corrigir.
-5. **Tom:** direto, sem entusiasmo artificial, sem elogio vazio. Siga as preferências de escrita do perfil (por padrão, sem travessão).
+5. **Tom e idioma:** direto, sem entusiasmo artificial, sem elogio vazio. Siga as preferências de escrita do perfil (por padrão, sem travessão). Converse e escreva os documentos no idioma do perfil; sem perfil, no idioma em que o usuário escreveu. Se ele estiver fora do Brasil, adapte leis, meios de pagamento e moeda ao país dele (veja `references/banca.md`).
 6. **Registro vivo:** se houver acesso a arquivos, mantenha `ideia.md` na pasta de saída e atualize ao fim de cada fase (formato em `references/processo.md`). Conversa consultiva fica longa e o contexto pode ser resumido; o arquivo garante que nenhuma decisão se perde. Não precisa mostrar o arquivo ao usuário a cada atualização, uma linha avisando basta.
 
 ## 4. Modo consultivo
@@ -59,7 +64,7 @@ O objetivo é chegar ao documento em 2 a 4 mensagens, sem abrir mão de nenhuma 
 
 1. Leia o que o usuário trouxe (texto, arquivo, repositório).
 2. Compare com o mínimo para gerar (lista em `references/prd-template.md`, seção "Mínimo para gerar"). Em uma única mensagem, mostre:
-   - **Parecer relâmpago:** uma linha por persona (Helena, Caio e o cliente ideal, Bia ou Lucas), com sinal e o ponto mais importante. Serve de alerta, não de interrogatório. Se aparecer um vermelho, diga isso com clareza e ofereça passar para o consultivo.
+   - **Parecer relâmpago:** uma linha por persona (Helena, Caio, o cliente ideal, Bia ou Lucas, e a Lúcia se houver gatilho), com sinal e o ponto mais importante. Serve de alerta, não de interrogatório. Se aparecer um vermelho, diga isso com clareza e ofereça passar para o consultivo.
    - **Lacunas:** uma única rodada, só com o que **bloqueia o build**. O que der para decidir com um padrão sensato, decida e registre como suposição.
 3. Ficha de decisão (formato em `references/processo.md`, fase 5) e portão. Se o material já vier completo e sem lacunas, a ficha vai na mesma mensagem do parecer.
 4. Geração.

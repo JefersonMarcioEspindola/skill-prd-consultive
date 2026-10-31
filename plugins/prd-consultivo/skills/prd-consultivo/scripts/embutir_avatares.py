@@ -21,6 +21,7 @@ from pathlib import Path
 
 EXTENSOES = ("webp", "png", "jpg", "jpeg")
 MIME = {"webp": "image/webp", "png": "image/png", "jpg": "image/jpeg", "jpeg": "image/jpeg"}
+NOMES = {"helena": "Helena", "caio": "Caio", "bia": "Bia", "lucas": "Lucas", "teo": "Téo", "lucia": "Dra. Lúcia"}
 LADO_MAX = 256
 AVISO_KB = 300
 
@@ -95,7 +96,7 @@ def main():
             iniciais.append(rotulo)
             return m.group(0)
         embutidas.append(f"{rotulo} ← {imagem.name}")
-        alt = html.escape(persona.capitalize())
+        alt = html.escape(NOMES.get(persona, persona.capitalize()))
         img = f'<img src="{data_uri(imagem, cache)}" alt="{alt}">'
         return f'{m.group("abre")}{img}{m.group("fecha")}'
 

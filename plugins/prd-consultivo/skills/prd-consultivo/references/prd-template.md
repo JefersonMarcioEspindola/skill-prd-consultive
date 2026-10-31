@@ -88,7 +88,7 @@ Use estes títulos, nesta ordem. Os números ajudam a referenciar ("ver seção 
 
 ## 8. Requisitos não funcionais
 - **RNF-01 Segurança:** <...>
-- **RNF-02 Privacidade/LGPD:** <...>
+- **RNF-02 Privacidade (LGPD ou a lei do país):** <...>
 - **RNF-03 Desempenho:** <...>
 - **RNF-04 Acessibilidade:** <...>
 <Só os que se aplicam, cada um verificável.>

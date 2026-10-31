@@ -112,7 +112,7 @@ Proponha em vez de perguntar sempre que der. "Pelo que você disse, o MVP fica c
 **Posicionamento:** <frase da fase 1, final>
 **Tipo:** <produto novo | feature | técnico>
 
-**Veredito da banca:** Helena 🟢 · Caio 🟡 · Bia 🟢
+**Veredito da banca:** Helena 🟢 · Caio 🟡 · Bia 🟢 <· Lúcia, se participou>
 
 **MVP inclui:** <itens>
 **Fica fora:** <itens, com motivo curto>
