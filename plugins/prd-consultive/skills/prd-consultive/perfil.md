@@ -1,6 +1,6 @@
 # Perfil
 
-Preencha uma vez e a skill para de perguntar o que já está aqui. Se instalou como plugin, copie este arquivo para `~/.claude/prd-consultive/perfil.md` e edite a cópia: a pasta do plugin é substituída a cada atualização. Pode deixar campos em branco: cada um tem um padrão, indicado entre parênteses.
+Preencha uma vez e a skill para de perguntar o que já está aqui. Se instalou como plugin do Claude Code, copie este arquivo para `~/.claude/prd-consultive/perfil.md` e edite a cópia: a pasta do plugin é substituída a cada atualização. Em apps de chat (claude.ai, ChatGPT, Gemini), edite este arquivo antes de enviar a skill, ou simplesmente diga as suas preferências na conversa. Pode deixar campos em branco: cada um tem um padrão, indicado entre parênteses.
 
 ## Quem usa
 

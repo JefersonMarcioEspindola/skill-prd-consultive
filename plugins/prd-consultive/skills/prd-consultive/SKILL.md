@@ -1,10 +1,12 @@
 ---
 name: prd-consultive
 description: >
-  Cria PRDs de forma consultiva: antes do documento, uma banca de personas (investidora, dev sênior, cliente ideal, moderador e, quando o tema pede, especialista jurídica) questiona a ideia no chat até não sobrar dúvida. Depois gera PRD.md (pronto para agentes de código), PRD.html com o parecer da banca e, se pedido, PLANO.md com tarefas. Tem modo rápido para quem já validou a ideia. Use SEMPRE que o usuário quiser criar ou estruturar um PRD, spec, documento de produto ou de feature; validar uma ideia de app ou SaaS antes de construir; ouvir um investidor ou um dev sobre a ideia; ou transformar uma ideia solta em plano para Claude Code, Cursor ou outro agente, mesmo sem dizer "PRD".
+  Cria PRDs de forma consultiva: antes do documento, uma banca de personas (investidora, dev sênior, cliente ideal, moderador e, quando o tema pede, especialista jurídica) questiona a ideia no chat até não sobrar dúvida. Depois gera PRD.md (pronto para agentes de código), PRD.html com o parecer da banca e, se pedido, PLANO.md com tarefas. Tem modo rápido para quem já validou a ideia. Use SEMPRE que o usuário quiser criar ou estruturar um PRD, spec, documento de produto ou de feature; validar uma ideia de app ou SaaS antes de construir; ouvir um investidor ou um dev sobre a ideia; ou transformar uma ideia solta em plano para Claude Code, Cursor ou outro agente, mesmo sem dizer "PRD". Also use it in English: write a PRD or spec, validate an app or SaaS idea, or get an investor or senior dev to challenge an idea before building.
 ---
 
 # PRD Consultive
+
+Esta skill funciona em qualquer assistente que leia skills no formato `SKILL.md`: Claude (claude.ai e Claude Code), ChatGPT, Gemini e agentes de código. Ela não depende de nenhuma ferramenta específica. Quando o ambiente oferece algo a mais (perguntas clicáveis, arquivos, execução de código, visual no chat), use; quando não oferece, o caminho só com texto funciona do mesmo jeito.
 
 Um PRD bom é uma ideia que já foi questionada. Agentes de código não perguntam quando o documento é vago: eles preenchem a lacuna com um chute plausível e constroem em cima dele com toda a confiança. Por isso esta skill inverte a ordem comum: **as dúvidas são resolvidas no chat, no começo**, e o documento final registra decisões, não perguntas.
 
@@ -18,10 +20,11 @@ ideia → entendimento → banca questiona → convergência → portão (ficha 
 
 Antes de qualquer pergunta, procure o perfil nesta ordem e use o primeiro que existir:
 
-1. `~/.claude/prd-consultive/perfil.md` (fica fora da pasta da skill, então sobrevive às atualizações do plugin);
-2. `perfil.md` na pasta desta skill (o modelo que vem com ela).
+1. Preferências que o usuário já deu nesta conversa ou que estão na memória do assistente.
+2. `~/.claude/prd-consultive/perfil.md` ou `~/.agents/prd-consultive/perfil.md`, se você tiver acesso aos arquivos do computador (ficam fora da pasta da skill, então sobrevivem às atualizações).
+3. `perfil.md` na pasta desta skill (o modelo que vem com ela).
 
-Se o usuário quiser preencher o perfil e você tiver acesso a arquivos, copie o modelo para o primeiro caminho e edite lá. Em ambientes sem acesso à pasta pessoal (como o claude.ai), use o da pasta da skill. O perfil guarda as preferências de quem usa: nome, idioma, stack preferida, tema visual, cores de marca, tom e pasta de saída. Campos vazios usam os padrões descritos no próprio arquivo. Não pergunte nada que o perfil já responde: quem configurou o perfil fez isso justamente para não ser perguntado de novo.
+Se o usuário quiser configurar o perfil: com acesso a arquivos, copie o modelo para um dos caminhos do item 2 e edite lá. Em apps de chat (claude.ai, ChatGPT, Gemini), peça as preferências em uma rodada curta e sugira que ele as salve na memória ou nas instruções personalizadas do app; quem preferir pode editar o `perfil.md` antes de enviar a skill. O perfil guarda as preferências de quem usa: nome, idioma, stack preferida, tema visual, cores de marca, tom e pasta de saída. Campos vazios usam os padrões descritos no próprio arquivo. Não pergunte nada que o perfil já responde: quem configurou o perfil fez isso justamente para não ser perguntado de novo.
 
 ## 2. Escolher o modo
 
@@ -73,8 +76,8 @@ O objetivo é chegar ao documento em 2 a 4 mensagens, sem abrir mão de nenhuma 
 
 O processo funciona só com texto, mas fica melhor quando o ambiente oferece mais. Use o que existir, sem anunciar a ferramenta:
 
-- **Pergunta com opções clicáveis** (por exemplo, a ferramenta AskUserQuestion no Claude Code): use nas rodadas de perguntas. Cada pergunta vira um card com 2 a 4 alternativas, a recomendada primeiro e com "(recomendado)" no rótulo; a opção de resposta livre costuma ser automática, não a repita. Falas das personas continuam no texto, antes das perguntas.
-- **Visual dentro do chat** (widgets inline, artifacts ou páginas renderizadas): use em dois momentos só, o **veredito da banca** e a **ficha de decisão**. Renderize os cards das personas com a cor de cada uma (veja `references/banca.md`). Não renderize a cada rodada: custa tempo e polui a conversa.
+- **Pergunta com opções clicáveis** (quando o assistente tem uma ferramenta de perguntas com alternativas): use nas rodadas de perguntas. Cada pergunta vira um card com 2 a 4 alternativas, a recomendada primeiro e com "(recomendado)" no rótulo; a opção de resposta livre costuma ser automática, não a repita. Falas das personas continuam no texto, antes das perguntas.
+- **Visual dentro do chat** (widgets, artifacts, canvas ou páginas renderizadas): use em dois momentos só, o **veredito da banca** e a **ficha de decisão**. Renderize os cards das personas com a cor de cada uma (veja `references/banca.md`). Não renderize a cada rodada: custa tempo e polui a conversa.
 - **Só texto:** use o formato de fala em markdown de `references/banca.md`, com o emoji e o nome da persona no cabeçalho.
 
 ## 7. Gerar os arquivos
@@ -85,11 +88,17 @@ Só depois do portão. Nesta ordem:
 2. **`PRD.html`**: o mesmo conteúdo, com o visual do esqueleto e o parecer da banca com os avatares. Parta sempre de `assets/skeleton.html` e siga `references/html.md`. O HTML é derivado do MD: se os dois divergirem, quem vale é o MD.
 3. **`PLANO.md`** (quando o usuário pedir, ou ofereça ao final): fases em ordem de dependência, tarefas com critério de pronto e um prompt de handoff para colar no agente. Formato em `references/plano-template.md`.
 
-Para colocar as fotos da banca no HTML, rode `python3 <pasta da skill>/scripts/embutir_avatares.py <caminho do PRD.html>`. O script embute as imagens de `assets/banca/` dentro do arquivo; se alguma imagem não existir, o card mantém as iniciais coloridas. Sem Python disponível, o HTML continua funcionando com as iniciais.
+**Fotos da banca no HTML:** se você pode executar Python, rode `python3 <pasta da skill>/scripts/embutir_avatares.py <caminho do PRD.html>`, que embute as imagens de `assets/banca/` no arquivo. Se não pode, use as fotos publicadas, com `<img>` apontando para `https://raw.githubusercontent.com/JefersonMarcioEspindola/skill-prd-consultive/main/plugins/prd-consultive/skills/prd-consultive/assets/banca/<persona>-<sinal>.webp` (detalhes em `references/html.md`). Elas aparecem quando o arquivo é aberto com internet. Em último caso, os cards mostram as iniciais coloridas.
 
-**Onde salvar:** na pasta definida no perfil. Sem perfil, crie `prd/<nome-do-produto>/` na pasta de trabalho atual. Em ambientes com pasta de saída própria e ferramenta de entregar arquivos (como o claude.ai), salve lá e use essa ferramenta. Nunca cole o HTML inteiro no chat.
+**Onde entregar:** depende do ambiente.
 
-**Mensagem final:** curta. Diga quais arquivos foram gerados, qual usar para quê (o `.md` vai para o agente ou para o chat, o `.html` é para ler e compartilhar) e o próximo passo concreto, por exemplo: colar o prompt de handoff do `PLANO.md` no Claude Code.
+- **Com acesso a pastas** (agentes de código): salve na pasta definida no perfil; sem perfil, em `prd/<nome-do-produto>/` na pasta de trabalho atual.
+- **App de chat que gera arquivos para baixar** (por exemplo, com execução de código ou pasta de saída): crie os arquivos e entregue como download.
+- **App de chat sem arquivos:** mostre o `PRD.md` em um bloco de código markdown (ou canvas, se houver), e o `PRD.html` em um bloco de código `html` separado, dizendo para salvar com esse nome e abrir no navegador. Se o app tiver canvas ou artifact que renderiza HTML, use.
+
+Fora desse último caso, nunca cole o HTML inteiro no chat.
+
+**Mensagem final:** curta. Diga quais arquivos foram gerados, qual usar para quê (o `.md` vai para o agente ou para o chat, o `.html` é para ler e compartilhar) e o próximo passo concreto, por exemplo: colar o prompt de handoff do `PLANO.md` no agente de código (Claude Code, Codex, Cursor).
 
 ## Mapa dos arquivos
 
@@ -104,4 +113,4 @@ Para colocar as fotos da banca no HTML, rode `python3 <pasta da skill>/scripts/e
 | `references/html.md` | Antes de escrever o `PRD.html` |
 | `references/plano-template.md` | Antes de escrever o `PLANO.md` |
 | `assets/skeleton.html` | Base de todo HTML gerado |
-| `scripts/embutir_avatares.py` | Depois de salvar o `PRD.html` |
+| `scripts/embutir_avatares.py` | Depois de salvar o `PRD.html`, se puder executar Python |

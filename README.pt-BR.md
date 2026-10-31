@@ -8,22 +8,24 @@
 </p>
 
 <p align="center">
-  <a href="#instalação"><img alt="Instalar no Claude Code" src="https://img.shields.io/badge/Instalar%20no-Claude%20Code-1D4ED8?style=for-the-badge&logo=claude&logoColor=white"></a>
+  <a href="#instalação"><img alt="Instalar" src="https://img.shields.io/badge/Instalar%20no-Claude%20%C2%B7%20ChatGPT%20%C2%B7%20Gemini-1D4ED8?style=for-the-badge"></a>
   <a href="#prompt-inicial"><img alt="Prompt inicial" src="https://img.shields.io/badge/Copiar-prompt%20inicial-0B2A6F?style=for-the-badge"></a>
 </p>
 
 <p align="center">
-  <img alt="Claude Code" src="https://img.shields.io/badge/Claude%20Code-suportado-1D4ED8">
-  <img alt="claude.ai" src="https://img.shields.io/badge/claude.ai-suportado-1D4ED8">
+  <img alt="Claude" src="https://img.shields.io/badge/Claude-suportado-1D4ED8">
+  <img alt="ChatGPT" src="https://img.shields.io/badge/ChatGPT-suportado-1D4ED8">
+  <img alt="Gemini" src="https://img.shields.io/badge/Gemini-suportado-1D4ED8">
+  <img alt="Agentes de código" src="https://img.shields.io/badge/Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor-suportado-1D4ED8">
   <img alt="Saída" src="https://img.shields.io/badge/sa%C3%ADda-PRD.md%20%C2%B7%20PRD.html%20%C2%B7%20PLANO.md-0B2A6F">
   <img alt="Licença MIT" src="https://img.shields.io/badge/licen%C3%A7a-MIT-0B2A6F">
 </p>
 
 # prd-consultive
 
-**Uma skill do Claude que cria PRDs do jeito consultivo: antes de existir documento, uma banca de personas questiona
-a sua ideia no chat. Só quando não sobra dúvida ela escreve o PRD, pronto para o Claude Code, o Cursor ou qualquer
-outro agente de código.**
+**Uma skill para Claude, ChatGPT e Gemini que cria PRDs do jeito consultivo: antes de existir documento, uma banca de
+personas questiona a sua ideia no chat. Só quando não sobra dúvida ela escreve o PRD, pronto para o Claude Code, o
+Codex, o Cursor ou qualquer outro agente de código.**
 
 Agente de código não pergunta quando a especificação é vaga. Ele preenche a lacuna com um chute plausível e constrói
 em cima com toda a confiança. A maioria dos modelos de PRD piora isso: termina com uma lista de "perguntas em aberto"
@@ -123,10 +125,25 @@ loja de apps), então esses pedidos viram a tarefa `T-00`, aberta no primeiro di
 
 ## Instalação
 
-**Requisitos:** [Claude Code](https://claude.com/claude-code) (CLI, app desktop ou extensão de IDE) ou um plano do
-claude.ai com skills. Python 3 é opcional (serve para embutir as fotos da banca no HTML).
+Funciona em qualquer assistente que leia skills no formato `SKILL.md`. Escolha o seu:
 
-### Opção 1: plugin do Claude Code (recomendado)
+| Onde | Como |
+|---|---|
+| **Claude** (claude.ai, apps de desktop e celular) | Baixe o [`prd-consultive.zip`](https://github.com/JefersonMarcioEspindola/skill-prd-consultive/releases/latest/download/prd-consultive.zip) e envie em Configurações → Capacidades → Skills |
+| **ChatGPT** | Baixe o [`prd-consultive.zip`](https://github.com/JefersonMarcioEspindola/skill-prd-consultive/releases/latest/download/prd-consultive.zip) e envie na área de Skills (Nova skill → Enviar) |
+| **Gemini** (web e app do Mac) | Envie o [`prd-consultive.zip`](https://github.com/JefersonMarcioEspindola/skill-prd-consultive/releases/latest/download/prd-consultive.zip) ao criar uma skill. Se ele aceitar só um arquivo, use o [`SKILL.md`](https://github.com/JefersonMarcioEspindola/skill-prd-consultive/releases/latest/download/SKILL.md), a versão com tudo em um arquivo |
+| **Claude Code** | Plugin, logo abaixo |
+| **Codex, Cursor, Gemini CLI e outros agentes** | `npx skills add`, logo abaixo, ou copie a pasta para a pasta de skills do agente |
+
+Os nomes dos menus mudam com frequência entre versões dos apps; se não achar o caminho acima, procure "Skills" nas
+configurações ou na barra lateral. Em plataformas com suporte limitado a skills, dá também para colar o `SKILL.md`
+completo em um Projeto, em um GPT personalizado ou nas instruções personalizadas.
+
+**Fotos no HTML:** onde o assistente consegue rodar Python, as fotos vão embutidas no arquivo. Nos apps de chat que
+não conseguem, o HTML aponta para as fotos publicadas neste repositório, e elas aparecem quando você abre o arquivo
+com internet.
+
+### Plugin do Claude Code
 
 Dentro do Claude Code:
 
@@ -137,13 +154,13 @@ Dentro do Claude Code:
 
 Reinicie o Claude Code se ele pedir. Para atualizar depois: `/plugin marketplace update prd-consultive`.
 
-### Opção 2: CLI de skills
+### CLI de skills (Claude Code, Codex, Cursor, Gemini CLI e outros)
 
 ```bash
 npx skills add JefersonMarcioEspindola/skill-prd-consultive
 ```
 
-### Opção 3: manual
+### Manual
 
 ```bash
 git clone https://github.com/JefersonMarcioEspindola/skill-prd-consultive.git
@@ -151,14 +168,14 @@ mkdir -p ~/.claude/skills
 cp -R skill-prd-consultive/plugins/prd-consultive/skills/prd-consultive ~/.claude/skills/
 ```
 
-### claude.ai
+Para outros agentes, copie a mesma pasta para a pasta de skills deles (por exemplo `~/.agents/skills/` ou
+`~/.codex/skills/`).
 
-Compacte a pasta `plugins/prd-consultive/skills/prd-consultive` em um `.zip` e envie em Configurações → Capacidades →
-Skills.
+Para gerar os pacotes você mesmo: `python3 tools/build.py` (saem em `dist/`).
 
 ## Prompt inicial
 
-Abra o Claude Code na pasta onde quer os documentos (ou no repositório de um produto que já existe) e cole:
+Cole isto no chat (Claude, ChatGPT, Gemini) ou no seu agente de código, aberto na pasta onde quer os documentos:
 
 ```text
 Use a skill prd-consultive. Coloca esta ideia na banca:
@@ -197,7 +214,10 @@ longa ou o contexto for resumido.
 Preencha o perfil uma vez e a skill para de perguntar o que já sabe: idioma, país, stack preferida, tema do HTML
 (claro, escuro ou as cores da sua marca), tom de escrita e pasta de saída.
 
-Se instalou do jeito manual:
+Num app de chat (Claude, ChatGPT, Gemini), diga as suas preferências uma vez e salve na memória ou nas instruções
+personalizadas do app, ou edite o `perfil.md` dentro do zip antes de enviar.
+
+No Claude Code, se instalou do jeito manual:
 
 ```bash
 mkdir -p ~/.claude/prd-consultive
@@ -205,8 +225,8 @@ cp ~/.claude/skills/prd-consultive/perfil.md ~/.claude/prd-consultive/perfil.md
 ```
 
 Edite a cópia em `~/.claude/prd-consultive/`. Esse lugar sobrevive às atualizações do plugin; a skill procura lá
-primeiro e, se não achar, usa o modelo dentro da pasta da skill. Se instalou como plugin, peça ao Claude *"configura o
-meu perfil do prd-consultive"* que ele cria a cópia para você.
+primeiro e, se não achar, usa o modelo dentro da pasta da skill. Se instalou como plugin, peça *"configura o meu perfil
+do prd-consultive"* que ele cria a cópia para você.
 
 ## Idioma e país
 
@@ -245,9 +265,10 @@ clareza, com opções (mudar o público, cortar escopo, validar antes). A decis�
 **Ela inventa números de mercado?** Não. Tamanho de mercado, preço de concorrente e taxa de conversão só aparecem com
 fonte (ela pesquisa quando tem ferramenta de busca) ou marcados como hipótese a validar.
 
-**Funciona no Cursor, no Codex ou em outros agentes?** A skill é um `SKILL.md` com arquivos de referência, então
-agentes que suportam o formato de skills conseguem carregar. Foi feita e testada no Claude Code e no claude.ai. O
-`PRD.md` gerado funciona com qualquer agente.
+**Funciona fora do Claude?** Funciona. É um `SKILL.md` com arquivos de referência, sem depender de nenhuma ferramenta
+exclusiva do Claude, então ChatGPT, Gemini e agentes de código que leem o formato de skills conseguem carregar. Quando
+o app oferece mais (perguntas clicáveis, arquivos para baixar, execução de código, visual no chat), a skill usa;
+quando não oferece, o caminho só com texto faz o mesmo trabalho. O `PRD.md` gerado funciona com qualquer agente.
 
 **Serve para uma feature ou uma refatoração, e não um produto novo?** Serve. A banca se adapta: numa feature a Helena
 fala de impacto no negócio em vez de mercado, e numa mudança técnica o Caio conduz e o PRD ganha um plano de migração

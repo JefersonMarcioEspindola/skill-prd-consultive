@@ -37,7 +37,7 @@ Execute uma fase por vez. Ao terminar cada tarefa, marque [x] e confira os crit�
 
 ## Prompt de handoff
 
-Cole no seu agente de código (Claude Code, Cursor etc.) dentro da pasta do projeto:
+Cole no seu agente de código (Claude Code, Codex, Cursor etc.) dentro da pasta do projeto:
 
 > Leia `docs/PRD.md` e `docs/PLANO.md` antes de qualquer coisa. O PRD é a fonte da verdade: respeite a seção 5 (o que fica fora do MVP) e a seção 11 (decisões, com o porquê de cada uma) e não mude nada disso sem me perguntar. Execute só a Fase 1 do plano, uma tarefa por vez, na ordem. Ao terminar cada tarefa, confira os critérios de "Pronto quando", marque a tarefa no PLANO.md e me diga em duas linhas o que foi feito. Se encontrar algo que o PRD não responde, pare e pergunte em vez de decidir sozinho.
 ```

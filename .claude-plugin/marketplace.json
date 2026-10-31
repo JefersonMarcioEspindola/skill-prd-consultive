@@ -6,14 +6,14 @@
   },
   "metadata": {
     "description": "Consultative PRDs: a board of personas questions your idea in the chat before the PRD is written.",
-    "version": "0.2.1"
+    "version": "0.3.0"
   },
   "plugins": [
     {
       "name": "prd-consultive",
       "source": "./plugins/prd-consultive",
       "description": "Validates your idea with a board (investor, senior dev, ideal customer, moderator, legal expert) and writes PRD.md, PRD.html and PLANO.md.",
-      "version": "0.2.1",
+      "version": "0.3.0",
       "category": "productivity",
       "keywords": [
         "prd",
