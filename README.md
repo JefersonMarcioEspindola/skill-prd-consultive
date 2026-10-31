@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/cover.png" alt="prd-consultive: your idea faces a board before it becomes a PRD" width="100%">
+  <img src="docs/assets/capa-en.png" alt="prd-consultive: your idea faces a board before it becomes a PRD" width="100%">
 </p>
 
 <p align="center">

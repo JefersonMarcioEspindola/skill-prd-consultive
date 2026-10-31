@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/cover.pt-BR.png" alt="prd-consultive: sua ideia passa por uma banca antes de virar PRD" width="100%">
+  <img src="docs/assets/capa-pt-BR.png" alt="prd-consultive: sua ideia passa por uma banca antes de virar PRD" width="100%">
 </p>
 
 <p align="center">
